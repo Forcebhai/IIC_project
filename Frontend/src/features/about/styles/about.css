@@ -1,0 +1,152 @@
+/* ==========================================================================
+   ELEVATE 360 — Scroll-Driven Static About Section with Blur Text Reveal
+   Pixel-Perfect to UI Reference Design
+   ========================================================================== */
+
+/* Font Family Utilities */
+.font-alice {
+  font-family: 'Alice', Georgia, 'Times New Roman', serif;
+}
+
+.font-canva {
+  font-family: 'Canva Sans', 'Plus Jakarta Sans', Inter, system-ui, -apple-system, sans-serif;
+}
+
+.font-times {
+  font-family: 'Times New Roman MT Bold', 'Times New Roman', 'Playfair Display', Georgia, serif;
+}
+
+/* Static Grid Background */
+.about-grid-bg {
+  background-color: #FFFFFF;
+  background-image: url('/assets/images/about/grid_texture.png');
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Victoria Memorial Architectural Illustration */
+.about-victoria-img {
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  user-select: none;
+  filter: contrast(1.08) brightness(0.98);
+}
+
+/* Top Heading Typography & Colors */
+.about-top-more {
+  color: #4A5568;
+  display: inline-block;
+  vertical-align: baseline;
+  will-change: transform, opacity, filter;
+}
+
+.about-top-than-a {
+  color: #111827;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  display: inline-block;
+  vertical-align: baseline;
+  will-change: transform, opacity, filter;
+}
+
+.about-top-summit {
+  color: #111827;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  will-change: transform, opacity, filter;
+}
+
+.about-top-subtitle {
+  will-change: transform, opacity, filter;
+}
+
+.about-top-btn {
+  will-change: transform, opacity, filter;
+}
+
+/* White Storytelling Panel */
+.about-white-panel {
+  background: #FFFFFF;
+  border-top-left-radius: 48px;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.04), 0 -1px 3px rgba(0, 0, 0, 0.02);
+  border-top: 1px solid #D5D0C7;
+  border-left: 1px solid #D5D0C7;
+}
+
+@media (min-width: 768px) {
+  .about-white-panel {
+    border-top-left-radius: 72px;
+  }
+}
+
+/* Blur-to-Focus Text Reveal Utility Classes */
+.about-blur-initial {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(25px);
+  will-change: transform, opacity, filter;
+}
+
+.about-blur-focused {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0);
+}
+
+/* Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  .about-blur-initial {
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Step Number Circle Badge (❶) */
+.about-step-badge {
+  width: 32px;
+  height: 32px;
+  background-color: #000000;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* CTA Buttons */
+.about-cta-primary {
+  background: #000000;
+  color: #FFFFFF;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.about-cta-primary:hover {
+  background: #1E293B;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.about-cta-secondary {
+  background: transparent;
+  color: #000000;
+  border: 1.5px solid #000000;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.about-cta-secondary:hover {
+  background: #000000;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}

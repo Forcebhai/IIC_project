@@ -1,0 +1,28 @@
+export const siteConfig = {
+  name: "ELEVATE 360",
+  edition: "Bengal AI Start-up Summit 2026",
+  theme: "Scripting Next Unicorns",
+  tagline: "Where Bengal's Deep-Tech Minds Script the Next Global Unicorns.",
+  dates: "October 7 – 8, 2026",
+  dayOneDate: "October 7, 2026",
+  dayTwoDate: "October 8, 2026",
+  host: "Sister Nivedita University",
+  hostShort: "SNU",
+  coordinator: "SNU-IIC (Institution's Innovation Council)",
+  location: "Sister Nivedita University, Kolkata",
+  address: "DG Block, Action Area 1 / Action Area II, New Town, Kolkata, West Bengal 700156",
+  city: "Kolkata, West Bengal, India",
+  registrationUrl: "https://vybecerkle.com/c/event/gVQI0M7XH3QyBSiM/share?type=yvr198w",
+  pitchDeckUrl: "#startups",
+  socials: {
+    twitter: "https://twitter.com",
+    linkedin: "https://linkedin.com",
+    github: "https://github.com",
+    youtube: "https://youtube.com",
+    instagram: "https://instagram.com",
+  },
+  contact: {
+    email: "elevate360@snuniv.ac.in",
+    phone: "+91 (033) 7102 1100",
+  },
+};
