@@ -1,0 +1,14 @@
+# Node
+node_modules/
+Frontend/node_modules/
+dist/
+Frontend/dist/
+
+
+# Logs
+*.log
+
+# Large Archives (unpacked in frames/)
+*.zip
+train_window_motion_clean_frames.zip
+
