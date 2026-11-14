@@ -184,7 +184,7 @@ export default function SpeakersSection() {
       {/* ================= 3. TOP HEADING & DIVIDER LINE (Clear of floating navbar) ================= */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 text-center shrink-0">
         {/* Main "SPEAKERS" Header with vertical gradient */}
-        <h2 className="speakers-title-gradient font-display font-black tracking-[0.05em] sm:tracking-[0.07em] text-[38px] xs:text-[46px] sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl uppercase select-none leading-none">
+        <h2 className="speakers-title-gradient font-display font-black tracking-[0.05em] sm:tracking-[0.07em] text-[40px] xs:text-[46px] sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl uppercase select-none leading-none">
           {speakersContent.heading}
         </h2>
 

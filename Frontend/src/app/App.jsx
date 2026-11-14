@@ -46,8 +46,10 @@ export default function App() {
         {/* Section 03: Summit Agenda (2 Days Interactive Tabs & Timeline) */}
         <AgendaSection />
 
+        <ElevateMarquee />
         {/* Section 04: Speakers & Keynote Leaders (Monochrome Showcase) */}
         <SpeakersSection />
+
 
         {/* Section 05: Start-up Pitching Competition (100+ Teams Deep Navy & Yellow) */}
         <StartupSection onOpenPitchModal={handleOpenRegister} />
