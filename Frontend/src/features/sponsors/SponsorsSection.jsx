@@ -124,6 +124,26 @@ export default function SponsorsSection() {
               </div>
             ))}
           </div>
+
+          {/* Participating Developer Communities from PDF */}
+          {sponsorsContent.communities && (
+            <div className="mt-8 pt-6 border-t border-[#E8E6E0] text-center">
+              <span className="font-mono text-xs text-[#626978] uppercase tracking-widest font-semibold block mb-4">
+                Participating Developer & Innovation Communities
+              </span>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                {sponsorsContent.communities.map((comm) => (
+                  <span
+                    key={comm.name}
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F8F7F3] border border-[#E8E6E0] text-xs font-mono text-[#182538] font-medium"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFD900]" />
+                    <span>{comm.name}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

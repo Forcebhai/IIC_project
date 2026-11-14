@@ -77,7 +77,7 @@ export default function RegistrationModal({ isOpen, onClose, defaultTier = 'stud
                 Register for ELEVATE 360
               </h3>
               <p className="text-xs text-[#AEB3B8] font-mono mt-1">
-                Sister Nivedita University • October 7 – 8, 2026
+                Sister Nivedita University • 17–19 November 2026
               </p>
             </div>
 
@@ -229,7 +229,7 @@ export default function RegistrationModal({ isOpen, onClose, defaultTier = 'stud
               Welcome to ELEVATE 360!
             </h3>
             <p className="text-xs sm:text-sm text-[#AEB3B8] max-w-sm mx-auto mb-6">
-              Thank you, <strong>{formData.name}</strong>. Your delegate badge confirmation has been registered for October 7–8, 2026.
+              Thank you, <strong>{formData.name}</strong>. Your delegate badge confirmation has been registered for 17–19 November 2026.
             </p>
 
             {/* Simulated Digital Badge */}

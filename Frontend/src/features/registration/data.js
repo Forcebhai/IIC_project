@@ -1,7 +1,7 @@
 export const registrationData = {
   heading: "READY TO SHAPE THE FUTURE?",
   title: "ELEVATE 360 — Bengal AI Start-up Summit 2026",
-  subheading: "October 7 – 8, 2026 • Sister Nivedita University, Kolkata",
+  subheading: "17–19 November 2026 • Sister Nivedita University, Kolkata",
   description:
     "Join 3,000+ founders, AI engineers, researchers, and venture capitalists scripting the future of artificial intelligence in Bengal.",
   tiers: [
@@ -14,7 +14,7 @@ export const registrationData = {
       popular: false,
       description: "For enrolled undergraduate & postgraduate students eager to learn and pitch.",
       features: [
-        "Access to both days of Keynotes & Talks",
+        "Access to all 3 days of Keynotes & Talks",
         "AI Workshop Track attendance",
         "Start-up Pitch Competition spectator access",
         "Official Certificate of Participation by SNU-IIC",
@@ -30,7 +30,7 @@ export const registrationData = {
       popular: true,
       description: "For active tech founders, entrepreneurs and startup team members.",
       features: [
-        "Full access to Day 1 & Day 2 Sessions",
+        "Full access to all 3-Day Summit Sessions",
         "Eligible to submit to Start-up Pitch Competition (₹25L+ Pool)",
         "Entry to Investor Speed-Dating rounds",
         "Cloud credits package ($5,000 value)",

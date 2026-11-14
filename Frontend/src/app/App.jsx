@@ -43,10 +43,9 @@ export default function App() {
         {/* Section 02: Summit Experiences (5 Large Editorial Rows) */}
         <ExperienceSection />
 
-        {/* Section 03: Summit Agenda (2 Days Interactive Tabs & Timeline) */}
+        {/* Section 03: Summit Agenda (3 Days Interactive Tabs & Timeline) */}
         <AgendaSection />
 
-        <ElevateMarquee />
         {/* Section 04: Speakers & Keynote Leaders (Monochrome Showcase) */}
         <SpeakersSection />
 

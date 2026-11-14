@@ -93,7 +93,7 @@ export default function AgendaSection() {
 
               {/* Session Content Row */}
               <div className="p-5 sm:p-6 rounded-xl bg-white/70 border border-[#E8E6E0] group-hover:border-[#FFD900]/80 group-hover:bg-white transition-all shadow-sm">
-                <div className="flex flex-wrap items-center gap-3 mb-2.5">
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-2.5">
                   {/* Subtle Yellow Accent Number */}
                   <span className="font-mono text-xs sm:text-sm font-bold px-2 py-0.5 rounded bg-[#FFD900]/20 text-[#182538] border border-[#FFD900]/40">
                     #{session.number}
@@ -103,12 +103,33 @@ export default function AgendaSection() {
                   <span className="font-mono text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-[#626978] bg-[#F8F7F3] border border-[#E8E6E0] px-2.5 py-0.5 rounded">
                     {session.category}
                   </span>
+
+                  {/* Time Badge */}
+                  {session.time && (
+                    <span className="font-mono text-[11px] sm:text-xs text-[#182538] font-medium bg-[#FAFAF9] border border-[#E8E6E0] px-2.5 py-0.5 rounded">
+                      {session.time}
+                    </span>
+                  )}
+
+                  {/* Venue Badge */}
+                  {session.venue && (
+                    <span className="font-mono text-[11px] sm:text-xs text-[#626978] bg-[#FAFAF9] border border-[#E8E6E0] px-2.5 py-0.5 rounded">
+                      📍 {session.venue}
+                    </span>
+                  )}
                 </div>
 
                 {/* Session Title */}
                 <h3 className="font-display font-bold text-lg sm:text-xl md:text-2xl text-[#080808] group-hover:text-[#182538] tracking-tight leading-snug">
                   {session.title}
                 </h3>
+
+                {/* Session Speakers / Panelists */}
+                {session.speakers && (
+                  <p className="font-sans text-xs sm:text-sm text-[#626978] mt-2">
+                    <span className="font-semibold text-[#182538]">Featuring:</span> {session.speakers}
+                  </p>
+                )}
               </div>
             </div>
           ))}

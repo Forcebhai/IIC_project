@@ -72,7 +72,7 @@ export default function MobileNav({
             Register Now
           </a>
           <p className="text-center text-[10px] text-white/70 font-mono">
-            Sister Nivedita University • Oct 7–8, 2026
+            Sister Nivedita University • 17–19 November 2026
           </p>
         </div>
       </div>

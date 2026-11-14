@@ -68,7 +68,7 @@ export default function VenueSection() {
                   {venueContent.dates}
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-[#626978] mt-1">
-                  Two full days of immersive keynotes, panel debates, and start-up pitching.
+                  Three full days of immersive keynotes, masterclasses, and start-up pitching.
                 </p>
               </div>
 
