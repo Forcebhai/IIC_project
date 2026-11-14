@@ -1,8 +1,10 @@
 export const speakersContent = {
-  label: 'THE MINDS BEHIND THE IDEAS',
-  heading: "THE PEOPLE SHAPING WHAT'S NEXT.",
+  label: 'BENGAL AI SUMMIT · SPEAKERS',
+  headingLine1: 'Meet the Minds',
+  headingLine2: 'Shaping Tomorrow',
+  heading: 'Meet the Minds Shaping Tomorrow',
   description:
-    'Learn from researchers, entrepreneurs, industry leaders and innovators bringing new perspectives to the future of AI and technology.',
+    'Discover the visionaries, researchers, founders, and innovators driving the next generation of Artificial Intelligence.',
   speakers: [
     {
       id: 'speaker-01',
