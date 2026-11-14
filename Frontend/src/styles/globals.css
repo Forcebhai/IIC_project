@@ -41,6 +41,20 @@
 }
 
 @layer components {
+  /* Oversized Editorial Footer Wordmark */
+  .footer-wordmark {
+    background: linear-gradient(
+      90deg,
+      #111111 0%,
+      #777777 50%,
+      #FFFFFF 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0.8;
+  }
+
   /* Glassmorphism primitives */
   .glass-panel {
     background: rgba(11, 19, 43, 0.65);
