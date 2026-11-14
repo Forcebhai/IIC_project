@@ -1,12 +1,21 @@
 import React from 'react';
 import { scrollTo } from '../../lib/lenis';
-import { ArrowUpRight, ArrowUp } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 /**
  * Editorial Footer Component — Elevate 360: Bengal AI Start-up Summit 2026
  *
  * Combines minimalist architectural drafting aesthetics, Victoria Memorial heritage engraving,
  * refined editorial typography, and the signature oversized black-to-white gradient wordmark.
+ *
+ * Mobile layout follows the reference mockup strictly:
+ * 1. Brand title and event name at the top (left-aligned)
+ * 2. Event dates and venue in small uppercase typography
+ * 3. Short event description
+ * 4. Startup competition information inside a compact rounded white card
+ * 5. Victoria Memorial architectural illustration card (text on left, engraving on right)
+ * 6. Three compact navigation columns: THE SUMMIT, EXPLORE, and CONNECT
+ * 7. Oversized ELEVATE 360 wordmark at the very bottom, horizontally centered
  */
 export default function Footer() {
   const handleNavigate = (href) => {
@@ -18,15 +27,6 @@ export default function Footer() {
     const target = document.querySelector(href);
     if (target) {
       scrollTo(target, { offset: -70 });
-    }
-  };
-
-  const handleBackToTop = (e) => {
-    e.preventDefault();
-    try {
-      scrollTo(0);
-    } catch (err) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -65,10 +65,216 @@ export default function Footer() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1440px] w-full mx-auto px-5 sm:px-8 md:px-14 lg:px-20 pt-16 sm:pt-20 md:pt-24 pb-8 sm:pb-12">
-        {/* ================= A. TOP SECTION — BRAND INTRODUCTION & NAVIGATION ================= */}
+      {/* ========================================================================= */}
+      {/* ======================= MOBILE FOOTER (Strictly follows reference) ===== */}
+      {/* ========================================================================= */}
+      <div className="block md:hidden relative z-10 w-full px-5 pt-8 pb-4">
+        {/* 1, 2, 3. BRAND INFO, DATES & DESCRIPTION */}
+        <div className="space-y-2 mb-5">
+          {/* Brand title with yellow accent dot */}
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#F4C430] shrink-0" />
+            <span className="font-display font-black text-2xl tracking-tight text-[#111111]">
+              ELEVATE 360
+            </span>
+          </div>
+
+          {/* Event Full Title */}
+          <h2 className="font-sans font-bold text-sm text-[#111111] tracking-tight">
+            Bengal AI Start-up Summit 2026
+          </h2>
+
+          {/* Event Dates & Venue in small uppercase typography */}
+          <div className="text-[10px] font-mono uppercase tracking-wider text-[#62666B] flex flex-wrap items-center gap-x-2 gap-y-0.5 pt-0.5">
+            <span className="inline-flex items-center gap-1 font-semibold text-[#111111]">
+              <span className="text-[#F4C430]">●</span> 17–19 NOVEMBER 2026
+            </span>
+            <span>|</span>
+            <span>SISTER NIVEDITA UNIVERSITY, KOLKATA</span>
+          </div>
+
+          {/* Event Description */}
+          <p className="font-sans text-xs text-[#62666B] leading-relaxed pt-1">
+            Bringing together innovators, researchers, entrepreneurs, and technology leaders to
+            explore the possibilities of Artificial Intelligence and build the future.
+          </p>
+        </div>
+
+        {/* 4. STARTUP COMPETITION CARD */}
+        <div className="rounded-2xl bg-white border border-[#DADADA] p-4 shadow-sm mb-4">
+          <div className="flex items-center gap-2 flex-wrap mb-2">
+            <span className="px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-wider bg-[#FEF7DA] text-[#111111] border border-[#F4C430]/40">
+              PITCH STAGE
+            </span>
+            <span className="font-mono text-[10px] font-bold text-[#111111] uppercase tracking-wider">
+              THE NEXT BIG IDEA STARTS HERE.
+            </span>
+          </div>
+          <p className="font-sans text-[11px] text-[#62666B] leading-snug mb-3">
+            Discover emerging AI startups and innovative solutions shaping tomorrow.
+          </p>
+          <div className="pt-2 border-t border-[#DADADA] grid grid-cols-2 gap-2 text-[10.5px] font-mono">
+            <div>
+              <span className="text-[#62666B] block text-[9px] uppercase tracking-wider">SEMI-FINAL</span>
+              <strong className="font-bold text-[#111111]">18 Nov · Top 15</strong>
+            </div>
+            <div>
+              <span className="text-[#62666B] block text-[9px] uppercase tracking-wider">GRAND FINAL</span>
+              <strong className="font-bold text-[#111111]">19 Nov · Top 5</strong>
+            </div>
+          </div>
+        </div>
+
+        {/* 5. VICTORIA MEMORIAL ARCHITECTURAL ILLUSTRATION CARD */}
+        <div className="relative overflow-hidden rounded-2xl bg-white/95 border border-[#DADADA] p-3.5 shadow-sm mb-5">
+          {/* Subtle Technical Blueprint Drafting Grid Inside Frame */}
+          <div className="absolute inset-0 pointer-events-none opacity-25">
+            <svg className="w-full h-full stroke-[#DADADA]" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="archGridMobile" width="36" height="36" patternUnits="userSpaceOnUse">
+                  <path d="M 36 0 L 0 0 0 36" fill="none" strokeWidth="0.7" />
+                  <circle cx="0" cy="0" r="1.2" fill="#62666B" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#archGridMobile)" />
+            </svg>
+          </div>
+
+          <div className="relative z-10 flex items-center justify-between gap-3">
+            {/* Left side: descriptive text */}
+            <div className="flex-1 min-w-0 pr-1">
+              <div className="inline-block px-1.5 py-0.5 rounded bg-[#F7F7F4] border border-[#DADADA] text-[8px] font-mono tracking-widest text-[#62666B] uppercase mb-1">
+                ARCH-REF // 22°32&apos;N 88°20&apos;E
+              </div>
+              <h3 className="font-display font-bold text-xs text-[#111111] leading-tight mb-1">
+                Kolkata: The Cradle of Innovation & Intellect
+              </h3>
+              <p className="font-sans text-[9px] text-[#62666B] leading-tight line-clamp-3 mb-1.5">
+                From historic marble monuments to East India&apos;s emerging AI startup frontier,
+                ELEVATE 360 script the next chapter of Indian technological leadership.
+              </p>
+              <div className="text-[8px] font-mono text-[#888888] tracking-wider">
+                SCALE: 1:500 • VICTORIA MEMORIAL ARCHIVE
+              </div>
+            </div>
+
+            {/* Right side: architectural pencil illustration */}
+            <div className="w-[110px] shrink-0 flex items-center justify-center">
+              <img
+                src="/assets/images/about/victoria_memorial.png"
+                alt="Victoria Memorial Kolkata Architectural Engraving"
+                className="w-full h-auto max-h-[85px] object-contain mix-blend-multiply opacity-95 contrast-[1.08]"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 6. THREE COMPACT NAVIGATION COLUMNS */}
+        <div className="pt-4 border-t border-[#DADADA] grid grid-cols-3 gap-2">
+          {/* Column 1: THE SUMMIT */}
+          <div>
+            <h3 className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#111111] mb-2.5 flex items-center gap-1">
+              <span className="text-[#F4C430] font-black text-xs leading-none">-</span>
+              THE SUMMIT
+            </h3>
+            <ul className="space-y-1.5">
+              {summitNav.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate(item.href);
+                    }}
+                    className="font-sans text-[11px] text-[#62666B] hover:text-[#111111] transition-colors duration-150 block truncate"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 2: EXPLORE */}
+          <div>
+            <h3 className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#111111] mb-2.5 flex items-center gap-1">
+              <span className="text-[#F4C430] font-black text-xs leading-none">-</span>
+              EXPLORE
+            </h3>
+            <ul className="space-y-1.5">
+              {exploreNav.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate(item.href);
+                    }}
+                    className="font-sans text-[11px] text-[#62666B] hover:text-[#111111] transition-colors duration-150 block truncate"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: CONNECT */}
+          <div>
+            <h3 className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#111111] mb-2.5 flex items-center gap-1">
+              <span className="text-[#F4C430] font-black text-xs leading-none">-</span>
+              CONNECT
+            </h3>
+            <ul className="space-y-1.5">
+              {connectNav.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    target={item.external ? '_blank' : undefined}
+                    rel={item.external ? 'noopener noreferrer' : undefined}
+                    onClick={
+                      item.external
+                        ? undefined
+                        : (e) => {
+                            e.preventDefault();
+                            handleNavigate(item.href);
+                          }
+                    }
+                    className="font-sans text-[11px] text-[#62666B] hover:text-[#111111] transition-colors duration-150 flex items-center gap-1 truncate"
+                  >
+                    <span>{item.label}</span>
+                    {item.external && <ArrowUpRight className="w-2.5 h-2.5 shrink-0 opacity-70" />}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* 7. OVERSIZED ELEVATE 360 WORDMARK AT THE VERY BOTTOM */}
+        <div className="w-full pt-8 pb-2 overflow-hidden flex justify-center items-center text-center">
+          <h1
+            className="footer-wordmark font-bebas font-bold tracking-[0.03em] text-[clamp(44px,16vw,74px)] leading-[0.88] whitespace-nowrap select-none uppercase text-center"
+            style={{
+              background: 'linear-gradient(90deg, #111111 0%, #777777 50%, #FFFFFF 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              opacity: 0.8,
+            }}
+          >
+            ELEVATE<span className="inline-block ml-[0.16em]">360</span>
+          </h1>
+        </div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* ======================= DESKTOP & TABLET FOOTER ========================= */}
+      {/* ========================================================================= */}
+      <div className="hidden md:block relative z-10 max-w-[1600px] w-full mx-auto px-8 md:px-14 lg:px-20 pt-16 md:pt-24 pb-8 sm:pb-12">
+        {/* A. TOP SECTION — BRAND INTRODUCTION & NAVIGATION */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 pb-14 sm:pb-18 border-b border-[#DADADA]">
-          {/* LEFT SIDE: Brand & Event Information */}
+          {/* LEFT SIDE: Brand & Event Information + Startup Pitch Card */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               {/* Event Identity with Summit Yellow accent */}
@@ -100,7 +306,7 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* C. STARTUP COMPETITION HIGHLIGHT (Editorial Callout) */}
+            {/* STARTUP COMPETITION HIGHLIGHT (Editorial Callout) */}
             <div className="relative p-5 sm:p-6 rounded-2xl bg-white border border-[#DADADA] shadow-sm max-w-md">
               <div className="flex items-center gap-2 mb-2">
                 <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-[#F4C430]/20 text-[#111111] border border-[#F4C430]/40">
@@ -128,7 +334,7 @@ export default function Footer() {
 
           {/* RIGHT SIDE: Three Navigation Columns */}
           <div className="lg:col-span-7 flex flex-col justify-between">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-10">
+            <div className="grid grid-cols-3 gap-8 sm:gap-10">
               {/* Column 1: THE SUMMIT */}
               <div>
                 <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#111111] mb-5 flex items-center gap-2">
@@ -232,18 +438,18 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ================= B. ARCHITECTURAL VISUAL SECTION — VICTORIA MEMORIAL ================= */}
+        {/* B. ARCHITECTURAL VISUAL SECTION — VICTORIA MEMORIAL */}
         <div className="relative w-full my-10 sm:my-14 overflow-hidden rounded-2xl bg-white/70 border border-[#DADADA] p-6 sm:p-10">
           {/* Subtle Technical Blueprint Drafting Grid Inside Frame */}
           <div className="absolute inset-0 pointer-events-none opacity-40">
             <svg className="w-full h-full stroke-[#DADADA]" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <pattern id="archGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+                <pattern id="archGridDesktop" width="60" height="60" patternUnits="userSpaceOnUse">
                   <path d="M 60 0 L 0 0 0 60" fill="none" strokeWidth="0.75" />
                   <circle cx="0" cy="0" r="1.5" fill="#62666B" />
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#archGrid)" />
+              <rect width="100%" height="100%" fill="url(#archGridDesktop)" />
             </svg>
           </div>
 
@@ -279,37 +485,19 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ================= D. OVERSIZED ELEVATE 360 BOTTOM WORDMARK ================= */}
-        <div className="relative w-full pt-4 sm:pt-6 pb-2 sm:pb-4 overflow-hidden text-center sm:text-left">
-          <h1 className="footer-wordmark font-display font-black tracking-[-0.04em] text-[clamp(44px,13.2vw,190px)] leading-[0.88] select-none uppercase">
-            ELEVATE 360
+        {/* D. OVERSIZED ELEVATE 360 BOTTOM WORDMARK */}
+        <div className="relative w-full pt-8 pb-4 overflow-hidden flex justify-center items-center text-center">
+          <h1
+            className="footer-wordmark font-bebas font-bold tracking-[0.03em] text-[clamp(80px,13.5vw,220px)] leading-[0.85] whitespace-nowrap select-none uppercase text-center"
+            style={{
+              background: 'linear-gradient(90deg, #111111 0%, #777777 50%, #FFFFFF 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              opacity: 0.8,
+            }}
+          >
+            ELEVATE<span className="inline-block ml-[0.16em]">360</span>
           </h1>
-        </div>
-
-        {/* ================= E. BOTTOM INFORMATION STRIP ================= */}
-        <div className="pt-6 sm:pt-8 mt-4 border-t border-[#DADADA] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#62666B]">
-          {/* Left: Copyright */}
-          <div>
-            Copyright © 2026 Elevate 360.
-          </div>
-
-          {/* Centre: Event subtitle */}
-          <div className="text-center font-medium text-[#111111]">
-            Bengal AI Start-up Summit 2026
-          </div>
-
-          {/* Right: Location & Smooth Back to Top */}
-          <div className="flex items-center gap-3">
-            <span>Kolkata, India</span>
-            <span>|</span>
-            <button
-              onClick={handleBackToTop}
-              className="group inline-flex items-center gap-1.5 text-[#111111] hover:text-[#F4C430] font-semibold transition-colors duration-200 cursor-pointer"
-            >
-              <span>Back to Top</span>
-              <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
-            </button>
-          </div>
         </div>
       </div>
     </footer>
