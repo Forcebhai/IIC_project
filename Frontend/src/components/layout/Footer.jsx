@@ -15,7 +15,7 @@ import { ArrowUpRight } from 'lucide-react';
  * 4. Startup competition information inside a compact rounded white card
  * 5. Victoria Memorial architectural illustration card (text on left, engraving on right)
  * 6. Three compact navigation columns: THE SUMMIT, EXPLORE, and CONNECT
- * 7. Oversized ELEVATE 360 wordmark at the very bottom, horizontally centered
+ * 7. Oversized ELEVATE 360 wordmark at the very bottom, full width edge-to-edge on phone and laptop
  */
 export default function Footer() {
   const handleNavigate = (href) => {
@@ -66,7 +66,7 @@ export default function Footer() {
       />
 
       {/* ========================================================================= */}
-      {/* ======================= MOBILE FOOTER (Strictly follows reference) ===== */}
+      {/* ======================= MOBILE FOOTER (Items 1 - 6) ===================== */}
       {/* ========================================================================= */}
       <div className="block md:hidden relative z-10 w-full px-5 pt-8 pb-4">
         {/* 1, 2, 3. BRAND INFO, DATES & DESCRIPTION */}
@@ -251,27 +251,12 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-
-        {/* 7. OVERSIZED ELEVATE 360 WORDMARK AT THE VERY BOTTOM */}
-        <div className="w-full pt-8 pb-2 overflow-hidden flex justify-center items-center text-center">
-          <h1
-            className="footer-wordmark font-bebas font-bold tracking-[0.03em] text-[clamp(44px,16vw,74px)] leading-[0.88] whitespace-nowrap select-none uppercase text-center"
-            style={{
-              background: 'linear-gradient(90deg, #111111 0%, #777777 50%, #FFFFFF 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              opacity: 0.8,
-            }}
-          >
-            ELEVATE<span className="inline-block ml-[0.16em]">360</span>
-          </h1>
-        </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* ======================= DESKTOP & TABLET FOOTER ========================= */}
+      {/* ======================= DESKTOP & TABLET FOOTER (Items A - B) =========== */}
       {/* ========================================================================= */}
-      <div className="hidden md:block relative z-10 max-w-[1600px] w-full mx-auto px-8 md:px-14 lg:px-20 pt-16 md:pt-24 pb-8 sm:pb-12">
+      <div className="hidden md:block relative z-10 max-w-[1600px] w-full mx-auto px-8 md:px-14 lg:px-20 pt-16 md:pt-24 pb-4">
         {/* A. TOP SECTION — BRAND INTRODUCTION & NAVIGATION */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 pb-14 sm:pb-18 border-b border-[#DADADA]">
           {/* LEFT SIDE: Brand & Event Information + Startup Pitch Card */}
@@ -484,21 +469,23 @@ export default function Footer() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* D. OVERSIZED ELEVATE 360 BOTTOM WORDMARK */}
-        <div className="relative w-full pt-8 pb-4 overflow-hidden flex justify-center items-center text-center">
-          <h1
-            className="footer-wordmark font-bebas font-bold tracking-[0.03em] text-[clamp(80px,13.5vw,220px)] leading-[0.85] whitespace-nowrap select-none uppercase text-center"
-            style={{
-              background: 'linear-gradient(90deg, #111111 0%, #777777 50%, #FFFFFF 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              opacity: 0.8,
-            }}
-          >
-            ELEVATE<span className="inline-block ml-[0.16em]">360</span>
-          </h1>
-        </div>
+      {/* ========================================================================= */}
+      {/* ===== 7. FULL-WIDTH OVERSIZED ELEVATE 360 WORDMARK (Phone & Laptop) ===== */}
+      {/* ========================================================================= */}
+      <div className="relative z-10 w-full overflow-hidden flex justify-center items-center text-center pt-4 sm:pt-6 md:pt-10 pb-2 sm:pb-3 md:pb-5 select-none pointer-events-none">
+        <h1
+          className="footer-wordmark font-bebas font-bold tracking-[0.015em] text-[19.2vw] leading-[0.8] whitespace-nowrap uppercase text-center w-full block m-0 p-0"
+          style={{
+            background: 'linear-gradient(90deg, #111111 0%, #777777 50%, #FFFFFF 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            opacity: 0.8,
+          }}
+        >
+          ELEVATE<span className="inline-block ml-[0.12em]">360</span>
+        </h1>
       </div>
     </footer>
   );
