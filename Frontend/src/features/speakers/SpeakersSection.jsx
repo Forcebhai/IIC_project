@@ -3,14 +3,14 @@ import SpeakerCard from './SpeakerCard';
 import { speakersContent } from './speakersData';
 
 /**
- * SpeakersSection Component — Architectural Editorial Showcase
+ * SpeakersSection Component — Single-Viewport Architectural Showcase
  *
- * Recreates the exact visual composition from the reference UI:
- * - Architectural drafting grid background
- * - Victoria Memorial monument background aligned with dome centered under heading at 80% opacity
- * - Bold uppercase "SPEAKERS" heading with vertical light-to-dark gradient and dividing line
- * - Infinite loop horizontal carousel with oversized editorial speaker cards
- * - Zero bottom buttons or pagination under the infinite scroll
+ * Configured to fit entirely within one screen on computer screens (desktop & laptop):
+ * - Floating navbar clearance with generous top padding
+ * - Centered "SPEAKERS" gradient title and thin architectural dividing line
+ * - Victoria Memorial monument background aligned with dome centered under heading
+ * - Infinite loop horizontal carousel with responsive cards scaled to fit a single viewport
+ * - Fits 100% in one page without needing any secondary scroll
  */
 export default function SpeakersSection() {
   const containerRef = useRef(null);
@@ -63,7 +63,6 @@ export default function SpeakersSection() {
   };
 
   useEffect(() => {
-    // Initial measurement after layout
     measureSetWidth();
 
     const handleResize = () => {
@@ -79,10 +78,10 @@ export default function SpeakersSection() {
     const track = trackRef.current;
     if (!track) return;
 
-    const baseDriftSpeed = 1.0; // smooth right-to-left continuous drift (px/frame)
+    const baseDriftSpeed = 0.9; // smooth right-to-left continuous drift (px/frame)
 
     const tick = () => {
-      const setWidth = setWidthRef.current || 4400;
+      const setWidth = setWidthRef.current || 3600;
 
       if (!isDraggingRef.current) {
         if (Math.abs(velocityRef.current) > 0.08) {
@@ -150,14 +149,14 @@ export default function SpeakersSection() {
     isDraggingRef.current = false;
 
     // Clamp velocity to comfortable range
-    velocityRef.current = Math.max(-22, Math.min(22, velocityRef.current));
+    velocityRef.current = Math.max(-20, Math.min(20, velocityRef.current));
   };
 
   return (
     <section
       id="speakers"
       ref={containerRef}
-      className="relative w-full min-h-[760px] sm:min-h-[860px] md:min-h-[960px] lg:min-h-[1020px] bg-[#F7F7F4] text-[#111111] overflow-hidden flex flex-col justify-between pt-12 sm:pt-16 md:pt-20 pb-12 sm:pb-16 md:pb-20 select-none border-b border-[#DADADA]"
+      className="relative w-full h-auto md:h-screen md:min-h-[640px] md:max-h-[920px] lg:max-h-[1000px] bg-[#F7F7F4] text-[#111111] overflow-hidden flex flex-col justify-between pt-20 sm:pt-24 md:pt-26 lg:pt-28 pb-4 sm:pb-6 md:pb-8 select-none border-b border-[#DADADA]"
     >
       {/* ================= 1. ARCHITECTURAL DRAFTING GRID OVERLAY ================= */}
       <div
@@ -176,26 +175,26 @@ export default function SpeakersSection() {
         <img
           src="/assets/speakers/Victoria_memorial_Speaker.png"
           alt="Victoria Memorial Kolkata Architectural Monument"
-          className="w-full h-full object-cover object-[center_30%] md:object-[center_22%] select-none pointer-events-none mix-blend-multiply opacity-80"
+          className="w-full h-full object-cover object-[center_28%] md:object-[center_24%] select-none pointer-events-none mix-blend-multiply opacity-80"
           style={{ opacity: 0.8 }}
           loading="eager"
         />
       </div>
 
-      {/* ================= 3. TOP HEADING & DIVIDER LINE ================= */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      {/* ================= 3. TOP HEADING & DIVIDER LINE (Clear of floating navbar) ================= */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 text-center shrink-0">
         {/* Main "SPEAKERS" Header with vertical gradient */}
-        <h2 className="speakers-title-gradient font-display font-black tracking-[0.05em] sm:tracking-[0.07em] text-[50px] xs:text-[62px] sm:text-7xl md:text-8xl lg:text-9xl uppercase select-none leading-none">
+        <h2 className="speakers-title-gradient font-display font-black tracking-[0.05em] sm:tracking-[0.07em] text-[38px] xs:text-[46px] sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl uppercase select-none leading-none">
           {speakersContent.heading}
         </h2>
 
         {/* Thin horizontal dividing line below SPEAKERS */}
-        <div className="w-[92%] max-w-5xl mx-auto h-[1.5px] bg-[#B0B0B0] opacity-80 mt-4 sm:mt-6 mb-3 sm:mb-4" />
+        <div className="w-[88%] max-w-4xl mx-auto h-[1.5px] bg-[#B0B0B0] opacity-80 mt-2.5 sm:mt-3.5 mb-1" />
       </div>
 
-      {/* ================= 4. INFINITE LOOP CAROUSEL TRACK ================= */}
+      {/* ================= 4. INFINITE LOOP CAROUSEL TRACK (Centered in remaining height) ================= */}
       <div
-        className="relative z-10 w-full overflow-hidden my-auto py-6 sm:py-8 md:py-12 cursor-grab active:cursor-grabbing select-none"
+        className="relative z-10 w-full overflow-hidden my-auto py-2 sm:py-3 md:py-4 cursor-grab active:cursor-grabbing select-none shrink-0"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
           setIsHovered(false);
@@ -208,7 +207,7 @@ export default function SpeakersSection() {
       >
         <div
           ref={trackRef}
-          className="inline-flex items-center gap-6 sm:gap-8 md:gap-10 lg:gap-14 will-change-transform"
+          className="inline-flex items-center gap-5 sm:gap-6 md:gap-8 lg:gap-10 will-change-transform"
           style={{
             touchAction: 'pan-y',
           }}
@@ -223,8 +222,8 @@ export default function SpeakersSection() {
         </div>
       </div>
 
-      {/* ================= 5. CLEAN BOTTOM SPACING (Zero buttons as requested) ================= */}
-      <div className="relative z-10 w-full h-4 sm:h-6 md:h-8 pointer-events-none" />
+      {/* ================= 5. CLEAN BOTTOM SPACING ================= */}
+      <div className="relative z-10 w-full h-2 sm:h-3 md:h-4 pointer-events-none shrink-0" />
     </section>
   );
 }

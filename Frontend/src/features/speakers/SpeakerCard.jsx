@@ -13,13 +13,12 @@ function LinkedInIcon({ className = 'w-4 h-4' }) {
 }
 
 /**
- * SpeakerCard Component — Oversized Editorial Showcase Card
+ * SpeakerCard Component — Editorial Showcase Card
  *
- * Recreates the exact proportions and visual scale from the reference UI:
- * - Large, prominent card framing (up to 1080px wide on desktop, 90vw on mobile)
- * - Large speaker photograph (w-[330px] - w-[420px] on desktop, full width on mobile)
- * - Spacious handwritten cursive editorial about section with generous line-height
- * - High-impact bottom bar with enlarged social and reaction buttons
+ * Designed to fit cleanly within a single laptop / desktop viewport:
+ * - Desktop: Horizontal side-by-side card (w-[760px] - w-[920px], h-[330px] - h-[360px])
+ * - Mobile: Vertical stacked card (w-[88vw], max-w-[390px])
+ * - Preserves the rich cursive handwritten about section, speaker photo, and bottom action bar
  */
 const SpeakerCard = React.forwardRef(function SpeakerCard(
   { speaker, isClone = false },
@@ -44,10 +43,10 @@ const SpeakerCard = React.forwardRef(function SpeakerCard(
     <div
       ref={ref}
       aria-hidden={isClone ? 'true' : undefined}
-      className="shrink-0 select-none w-[88vw] max-w-[420px] md:max-w-none md:w-[820px] lg:w-[980px] xl:w-[1080px] rounded-[26px] sm:rounded-[32px] md:rounded-[36px] lg:rounded-[40px] bg-[#FAF9F5]/96 backdrop-blur-md border border-[#DEDBD2] shadow-[0_16px_48px_rgba(0,0,0,0.08)] p-4 sm:p-6 md:p-7 lg:p-8 transition-all duration-300 hover:shadow-[0_24px_64px_rgba(0,0,0,0.12)] hover:border-[#CDC9BF] flex flex-col md:flex-row gap-4 sm:gap-5 md:gap-7 lg:gap-8"
+      className="shrink-0 select-none w-[88vw] max-w-[390px] md:max-w-none md:w-[760px] lg:w-[860px] xl:w-[920px] md:h-[330px] lg:h-[360px] rounded-[24px] sm:rounded-[28px] md:rounded-[32px] bg-[#FAF9F5]/96 backdrop-blur-md border border-[#DEDBD2] shadow-[0_12px_36px_rgba(0,0,0,0.08)] p-4 sm:p-5 md:p-5 lg:p-6 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] hover:border-[#CDC9BF] flex flex-col md:flex-row gap-3.5 sm:gap-4 md:gap-5 lg:gap-6"
     >
-      {/* ================= 1. SPEAKER PHOTOGRAPH (Large & Prominent) ================= */}
-      <div className="w-full md:w-[330px] lg:w-[390px] xl:w-[420px] aspect-[4/3] rounded-2xl md:rounded-[24px] overflow-hidden shrink-0 shadow-sm border border-black/5 bg-[#EAE8E2] relative group">
+      {/* ================= 1. SPEAKER PHOTOGRAPH ================= */}
+      <div className="w-full md:w-[260px] lg:w-[300px] xl:w-[320px] aspect-[4/3] md:aspect-auto md:h-full rounded-2xl md:rounded-[20px] overflow-hidden shrink-0 shadow-sm border border-black/5 bg-[#EAE8E2] relative group">
         <img
           src={speaker.image}
           alt={isClone ? '' : speaker.name}
@@ -60,11 +59,11 @@ const SpeakerCard = React.forwardRef(function SpeakerCard(
       </div>
 
       {/* ================= 2. SPEAKERS ABOUT & SOCIALS (Red Circled Section) ================= */}
-      <div className="flex-1 flex flex-col justify-between min-w-0 md:pl-2">
+      <div className="flex-1 flex flex-col justify-between min-w-0 md:pl-1 h-full">
         {/* Cursive / Handwritten About Section */}
-        <div className="overflow-hidden mb-3">
+        <div className="overflow-hidden my-auto py-1">
           <p
-            className="font-caveat text-[#1A1A1A] text-[15px] xs:text-[16px] sm:text-lg md:text-[20px] lg:text-[22px] xl:text-[23px] leading-[1.42] sm:leading-[1.48] md:leading-[1.52] select-none tracking-wide text-justify line-clamp-6 md:line-clamp-7"
+            className="font-caveat text-[#1A1A1A] text-[15px] sm:text-base md:text-[17px] lg:text-[19px] xl:text-[20px] leading-[1.36] md:leading-[1.40] select-none tracking-wide text-justify line-clamp-6 md:line-clamp-6"
             style={{
               fontFamily: "'Caveat', cursive, serif",
               fontOpticalSizing: 'auto',
@@ -75,18 +74,18 @@ const SpeakerCard = React.forwardRef(function SpeakerCard(
         </div>
 
         {/* Bottom Socials & Reaction Actions */}
-        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-[#E5E2D9]">
+        <div className="flex items-center justify-between pt-2.5 sm:pt-3 border-t border-[#E5E2D9]">
           {/* Left: Social Media Badges */}
-          <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             {/* LinkedIn Badge */}
             <a
               href={speaker.socials?.linkedin || 'https://linkedin.com'}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-md bg-[#0077B5] flex items-center justify-center text-white hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded bg-[#0077B5] flex items-center justify-center text-white hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
             >
-              <LinkedInIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+              <LinkedInIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </a>
 
             {/* Instagram Badge */}
@@ -95,42 +94,42 @@ const SpeakerCard = React.forwardRef(function SpeakerCard(
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg border-[1.5px] border-[#1A1A1A] bg-transparent flex items-center justify-center text-[#1A1A1A] hover:bg-black/5 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg border-[1.5px] border-[#1A1A1A] bg-transparent flex items-center justify-center text-[#1A1A1A] hover:bg-black/5 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
             >
-              <Instagram className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.2]" />
+              <Instagram className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.2]" />
             </a>
           </div>
 
           {/* Right: Four Circular Reaction Badges */}
-          <div className="flex items-center gap-2 sm:gap-2.5 md:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {/* 1. Red Heart */}
             <button
               onClick={handleLike}
               type="button"
               aria-label="Like"
-              className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer ${
+              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer ${
                 liked ? 'bg-[#DC2626] ring-2 ring-[#DC2626]/30' : 'bg-[#E53E3E]'
               }`}
             >
-              <Heart className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-white stroke-none" />
+              <Heart className="w-3.5 h-3.5 fill-white stroke-none" />
             </button>
 
             {/* 2. Yellow Chat Bubble */}
             <button
               type="button"
               aria-label="Comments"
-              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-[#ECC94B] flex items-center justify-center text-[#1A1A1A] shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#ECC94B] flex items-center justify-center text-[#1A1A1A] shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-[#1A1A1A] stroke-none" />
+              <MessageCircle className="w-3.5 h-3.5 fill-[#1A1A1A] stroke-none" />
             </button>
 
             {/* 3. Green Send / Plane */}
             <button
               type="button"
               aria-label="Share"
-              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-[#38A169] flex items-center justify-center text-white shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#38A169] flex items-center justify-center text-white shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer"
             >
-              <Send className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-white stroke-none -rotate-12 translate-x-[0.5px]" />
+              <Send className="w-3.5 h-3.5 fill-white stroke-none -rotate-12 translate-x-[0.5px]" />
             </button>
 
             {/* 4. Blue Bookmark */}
@@ -138,11 +137,11 @@ const SpeakerCard = React.forwardRef(function SpeakerCard(
               onClick={handleBookmark}
               type="button"
               aria-label="Bookmark"
-              className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer ${
+              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer ${
                 bookmarked ? 'bg-[#1D4ED8] ring-2 ring-[#1D4ED8]/30' : 'bg-[#3182CE]'
               }`}
             >
-              <Bookmark className="w-4 h-4 sm:w-4.5 sm:h-4.5 fill-white stroke-none" />
+              <Bookmark className="w-3.5 h-3.5 fill-white stroke-none" />
             </button>
           </div>
         </div>
