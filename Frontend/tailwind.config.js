@@ -39,6 +39,7 @@ export default {
         display: ['"Plus Jakarta Sans"', 'Outfit', 'Inter', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
         alice: ['"Alice"', 'serif'],
+        caveat: ['"Caveat"', 'cursive', 'serif'],
         canva: ['"Canva Sans"', '"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
         times: ['"Times New Roman MT Bold"', '"Times New Roman"', 'Georgia', 'serif'],
       },

@@ -237,9 +237,9 @@ export default function Footer() {
                       item.external
                         ? undefined
                         : (e) => {
-                            e.preventDefault();
-                            handleNavigate(item.href);
-                          }
+                          e.preventDefault();
+                          handleNavigate(item.href);
+                        }
                     }
                     className="font-sans text-[11px] text-[#62666B] hover:text-[#111111] transition-colors duration-150 flex items-center gap-1 truncate"
                   >
@@ -391,9 +391,9 @@ export default function Footer() {
                           item.external
                             ? undefined
                             : (e) => {
-                                e.preventDefault();
-                                handleNavigate(item.href);
-                              }
+                              e.preventDefault();
+                              handleNavigate(item.href);
+                            }
                         }
                         className="group inline-flex items-center gap-1.5 font-sans text-sm text-[#62666B] hover:text-[#111111] transition-colors duration-200 cursor-pointer"
                       >
@@ -474,9 +474,9 @@ export default function Footer() {
       {/* ========================================================================= */}
       {/* ===== 7. FULL-WIDTH OVERSIZED ELEVATE 360 WORDMARK (Phone & Laptop) ===== */}
       {/* ========================================================================= */}
-      <div className="relative z-10 w-full overflow-hidden flex justify-center items-center text-center pt-4 sm:pt-6 md:pt-10 pb-2 sm:pb-3 md:pb-5 select-none pointer-events-none">
+      <div className="relative z-10 w-full overflow-hidden flex justify-center items-center text-center pt-4 sm:pt-6 md:pt-15 pb-2 sm:pb-4 md:pb-5 select-none pointer-events-none">
         <h1
-          className="footer-wordmark font-bebas font-bold tracking-[0.015em] text-[19.2vw] leading-[0.8] whitespace-nowrap uppercase text-center w-full block m-0 p-0"
+          className="footer-wordmark font-bebas font-bold tracking-[0.015em] text-[24vw] leading-[0.9] whitespace-nowrap uppercase text-center w-full block m-0 p-0"
           style={{
             background: 'linear-gradient(90deg, #111111 0%, #777777 50%, #FFFFFF 100%)',
             WebkitBackgroundClip: 'text',

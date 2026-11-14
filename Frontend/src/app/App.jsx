@@ -25,7 +25,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F8F7F3] text-[#080808] overflow-x-hidden selection:bg-[#FFD900] selection:text-[#080808]">
+    <div className="relative min-h-screen bg-[#F8F7F3] text-[#080808] w-full overflow-x-hidden selection:bg-[#FFD900] selection:text-[#080808]">
       {/* Floating iPhone Glass Capsule Navigation */}
       <Navbar onOpenRegister={handleOpenRegister} />
 
