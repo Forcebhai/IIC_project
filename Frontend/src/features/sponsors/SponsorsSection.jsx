@@ -156,14 +156,7 @@ export default function SponsorsSection() {
       </div>
 
       {/* ================= 2. VICTORIA MEMORIAL ARCHITECTURAL ENGRAVING ================= */}
-      <div className="absolute top-2 right-0 w-[55%] sm:w-[45%] max-w-[680px] pointer-events-none overflow-hidden z-0 select-none opacity-[0.22] mix-blend-multiply">
-        <img
-          src="/assets/images/about/victoria_memorial.png"
-          alt="Victoria Memorial Kolkata Architectural Engraving"
-          className="w-full h-auto object-contain object-right-top"
-          loading="lazy"
-        />
-      </div>
+
 
       {/* ================= 3. BOTTOM-LEFT SUMMIT YELLOW CIRCULAR ANCHOR ================= */}
       <div className="absolute -bottom-24 sm:-bottom-32 md:-bottom-36 -left-24 sm:-left-32 md:-left-36 w-52 sm:w-68 md:w-80 h-52 sm:h-68 md:h-80 rounded-full border-4 sm:border-[6px] border-[#F4C430] pointer-events-none opacity-85 z-0" />
