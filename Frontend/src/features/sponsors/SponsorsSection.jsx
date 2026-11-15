@@ -1,150 +1,379 @@
-import React from 'react';
-import { Building2, Sparkles, ShieldCheck } from 'lucide-react';
-import { sponsorsContent } from './data';
+import React, { useEffect, useRef } from 'react';
+import { ArrowRight, Instagram, Sparkles } from 'lucide-react';
+import { gsap, ScrollTrigger } from '../../lib/gsap';
+import { scrollTo } from '../../lib/lenis';
+import { sponsorsData, sponsorsHeading } from './data';
 
+/**
+ * SponsorsSection Component — Elevate 360: Bengal AI Start-up Summit 2026
+ *
+ * Implements the full master specification:
+ * 1. Technical architectural drafting grid + Victoria Memorial pencil engraving in upper right
+ * 2. Centered heading: "Our Esteemed Sponsors" with "Sponsors" in Summit Yellow
+ * 3. Left handwritten editorial annotation: "Powered by Industry Leaders" with curved SVG arrow
+ * 4. 5 Columns × 3 Rows clean grid displaying exactly 15 confirmed brand sponsors
+ * 5. Interactive sponsor cards:
+ *    - On hover: reveals floating Instagram handle pill with Instagram icon & yellow border
+ *    - On click: safely navigates directly to the sponsor's Instagram profile in a new tab
+ * 6. Bottom CTA: "OUR PARTNERS →" with signature dashed yellow outline
+ * 7. Right handwritten editorial annotation: "Building what's next" with curved SVG arrow
+ * 8. Bottom-left Summit Yellow circular architectural anchor
+ */
 export default function SponsorsSection() {
+  const sectionRef = useRef(null);
+  const eyebrowRef = useRef(null);
+  const headingRef = useRef(null);
+  const descRef = useRef(null);
+  const leftAnnotationRef = useRef(null);
+  const gridRef = useRef(null);
+  const ctaRef = useRef(null);
+  const rightAnnotationRef = useRef(null);
+
+  // GSAP ScrollTrigger entrance animation
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 75%',
+          toggleActions: 'play none none none',
+        },
+      });
+
+      // Staggered reveal
+      tl.from(eyebrowRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power3.out',
+      })
+        .from(
+          headingRef.current,
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.7,
+            ease: 'power3.out',
+          },
+          '-=0.3'
+        )
+        .from(
+          descRef.current,
+          {
+            y: 18,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+          },
+          '-=0.4'
+        )
+        .from(
+          leftAnnotationRef.current,
+          {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.6,
+            ease: 'back.out(1.5)',
+          },
+          '-=0.3'
+        )
+        .from(
+          gridRef.current ? gridRef.current.children : [],
+          {
+            y: 25,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.04,
+            ease: 'power2.out',
+          },
+          '-=0.3'
+        )
+        .from(
+          ctaRef.current,
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+          },
+          '-=0.2'
+        )
+        .from(
+          rightAnnotationRef.current,
+          {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.6,
+            ease: 'back.out(1.5)',
+          },
+          '-=0.3'
+        );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleCtaClick = () => {
+    const venueEl = document.querySelector(sponsorsHeading.ctaTarget || '#venue');
+    if (venueEl) {
+      scrollTo(venueEl, { offset: -70 });
+    }
+  };
+
   return (
     <section
       id="sponsors"
-      className="section-bg-white relative py-24 sm:py-32 md:py-40 text-[#080808] overflow-hidden border-t border-[#E8E6E0]"
+      ref={sectionRef}
+      className="relative w-full bg-[#FFFFFF] text-[#111111] overflow-hidden py-24 sm:py-32 md:py-36 border-b border-[#DADADA]"
     >
-      <div className="max-w-[1400px] w-full mx-auto px-5 sm:px-8 md:px-16 lg:px-20">
-        {/* ================= EDITORIAL HEADING ================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 mb-16 sm:mb-20 items-end">
-          <div className="lg:col-span-7">
-            {/* Section Label */}
-            <div className="inline-flex items-center gap-2 mb-4 sm:mb-5">
-              <span className="w-2 h-2 rounded-full bg-[#FFD900]" />
-              <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] font-semibold text-[#626978]">
-                {sponsorsContent.label}
-              </span>
-            </div>
+      {/* ================= 1. ARCHITECTURAL DRAFTING GRID OVERLAY ================= */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.38] z-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, #DADADA 1px, transparent 1px),
+            linear-gradient(to bottom, #DADADA 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+        }}
+      />
 
-            {/* Main Editorial Heading */}
-            <h2 className="font-display font-black text-3xl sm:text-5xl md:text-6xl text-[#182538] leading-[1.08] tracking-tight">
-              {sponsorsContent.heading}
-            </h2>
-          </div>
+      {/* Decorative Technical Crosshairs (+) */}
+      <span className="absolute top-12 left-12 font-mono text-sm text-[#DADADA] font-bold select-none pointer-events-none hidden md:block">
+        +
+      </span>
+      <span className="absolute top-12 right-12 font-mono text-sm text-[#DADADA] font-bold select-none pointer-events-none hidden md:block">
+        +
+      </span>
+      <span className="absolute bottom-16 right-16 font-mono text-sm text-[#DADADA] font-bold select-none pointer-events-none hidden md:block">
+        +
+      </span>
 
-          {/* Right Supporting Description */}
-          <div className="lg:col-span-5 lg:pl-6">
-            <p className="font-sans text-base sm:text-lg text-[#626978] leading-relaxed">
-              {sponsorsContent.description}
-            </p>
+      {/* Short horizontal Summit Yellow line near left edge */}
+      <div className="absolute top-36 left-0 w-12 sm:w-16 h-1 bg-[#F4C430] rounded-r-full pointer-events-none hidden lg:block" />
+
+      {/* Technical circular construction diagram near lower-left side */}
+      <div className="absolute bottom-32 left-10 w-24 h-24 border border-[#DADADA] rounded-full pointer-events-none opacity-40 hidden xl:block">
+        <div className="w-full h-full relative flex items-center justify-center">
+          <div className="w-12 h-12 border border-dashed border-[#DADADA] rounded-full" />
+          <div className="w-1.5 h-1.5 bg-[#F4C430] rounded-full" />
+        </div>
+      </div>
+
+      {/* ================= 2. VICTORIA MEMORIAL ARCHITECTURAL ENGRAVING ================= */}
+      <div className="absolute top-2 right-0 w-[55%] sm:w-[45%] max-w-[680px] pointer-events-none overflow-hidden z-0 select-none opacity-[0.22] mix-blend-multiply">
+        <img
+          src="/assets/images/about/victoria_memorial.png"
+          alt="Victoria Memorial Kolkata Architectural Engraving"
+          className="w-full h-auto object-contain object-right-top"
+          loading="lazy"
+        />
+      </div>
+
+      {/* ================= 3. BOTTOM-LEFT SUMMIT YELLOW CIRCULAR ANCHOR ================= */}
+      <div className="absolute -bottom-24 sm:-bottom-32 md:-bottom-36 -left-24 sm:-left-32 md:-left-36 w-52 sm:w-68 md:w-80 h-52 sm:h-68 md:h-80 rounded-full border-4 sm:border-[6px] border-[#F4C430] pointer-events-none opacity-85 z-0" />
+
+      {/* ================= MAIN CONTENT CONTAINER ================= */}
+      <div className="relative z-10 max-w-[1440px] w-full mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col items-center text-center">
+        {/* ================= EYEBROW BADGE ================= */}
+        <div ref={eyebrowRef} className="mb-4 sm:mb-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFFFF] border border-[#F4C430] shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#F4C430] animate-pulse" />
+            <span className="font-mono text-xs uppercase tracking-[0.2em] font-bold text-[#111111]">
+              {sponsorsHeading.eyebrow}
+            </span>
           </div>
         </div>
 
-        {/* ================= HOST & COORDINATOR DUAL CARD ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16">
-          {/* Host University */}
-          <div className="p-8 sm:p-10 rounded-2xl bg-white border border-[#E8E6E0] shadow-sm flex flex-col justify-between relative overflow-hidden group">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-[#182538]" />
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#182538] bg-[#E8E6E0]/50 px-3 py-1 rounded">
-                  {sponsorsContent.host.role}
-                </span>
-                <Building2 className="w-5 h-5 text-[#182538]" />
-              </div>
-              <h3 className="font-display font-black text-2xl sm:text-3xl text-[#182538] mb-2 tracking-tight">
-                {sponsorsContent.host.institution}
-              </h3>
-              <p className="font-sans text-xs text-[#626978] uppercase tracking-wider font-semibold mb-4">
-                {sponsorsContent.host.location}
-              </p>
-              <p className="font-sans text-sm text-[#626978] leading-relaxed">
-                {sponsorsContent.host.description}
-              </p>
-            </div>
-          </div>
-
-          {/* Coordinating Council */}
-          <div className="p-8 sm:p-10 rounded-2xl bg-white border border-[#E8E6E0] shadow-sm flex flex-col justify-between relative overflow-hidden group">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-[#FFD900]" />
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#182538] bg-[#FFD900]/20 px-3 py-1 rounded">
-                  {sponsorsContent.coordinator.role}
-                </span>
-                <Sparkles className="w-5 h-5 text-[#FFD900]" />
-              </div>
-              <h3 className="font-display font-black text-2xl sm:text-3xl text-[#182538] mb-2 tracking-tight">
-                {sponsorsContent.coordinator.name}
-              </h3>
-              <p className="font-sans text-xs text-[#626978] uppercase tracking-wider font-semibold mb-4">
-                Ministry of Education Innovation Cell
-              </p>
-              <p className="font-sans text-sm text-[#626978] leading-relaxed">
-                {sponsorsContent.coordinator.description}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* ================= ARCHITECTURAL GRID WITH CORNER CROSSHAIRS ================= */}
-        {/* Directly inspired by UI reference image */}
-        <div className="relative p-6 sm:p-10 rounded-3xl bg-white border border-[#E8E6E0] shadow-sm">
-          {/* 4 Architectural Crosshair Marks (+) */}
-          <span className="absolute -top-2.5 -left-2.5 font-mono text-xs text-neutral-400 select-none">+</span>
-          <span className="absolute -top-2.5 -right-2.5 font-mono text-xs text-neutral-400 select-none">+</span>
-          <span className="absolute -bottom-2.5 -left-2.5 font-mono text-xs text-neutral-400 select-none">+</span>
-          <span className="absolute -bottom-2.5 -right-2.5 font-mono text-xs text-neutral-400 select-none">+</span>
-
-          {/* Subheading */}
-          <div className="text-center mb-8 pb-4 border-b border-[#E8E6E0]">
-            <h3 className="font-display font-bold text-lg sm:text-xl text-[#182538] tracking-tight uppercase">
-              Ecosystem & Innovation Partners
-            </h3>
-          </div>
-
-          {/* 6 Grid Cells */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border border-[#E8E6E0] rounded-xl overflow-hidden divide-y sm:divide-y-0 sm:divide-x divide-[#E8E6E0]">
-            {sponsorsContent.partners.map((partner) => (
-              <div
-                key={partner.id}
-                className={`p-8 sm:p-10 flex flex-col items-center justify-center text-center transition-all duration-300 ${
-                  partner.highlight
-                    ? 'bg-[#FFD900] text-[#080808] font-bold shadow-inner'
-                    : 'bg-white hover:bg-neutral-50 text-[#182538]'
-                }`}
+        {/* ================= MAIN HEADING ================= */}
+        <div ref={headingRef} className="max-w-4xl mx-auto mb-3 sm:mb-4">
+          <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[#111111] leading-[1.04] tracking-tight">
+            <span>{sponsorsHeading.headingLine1}</span> <br />
+            <span className="text-[#F4C430] relative inline-block">
+              {sponsorsHeading.headingLine2}
+              {/* Subtle architectural underline stroke */}
+              <svg
+                className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 text-[#F4C430]"
+                viewBox="0 0 100 12"
+                preserveAspectRatio="none"
               >
+                <path
+                  d="M0 8 Q 50 1, 100 8"
+                  stroke="currentColor"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+              </svg>
+            </span>
+          </h2>
+        </div>
+
+        {/* ================= SUPPORTING DESCRIPTION ================= */}
+        <div ref={descRef} className="max-w-2xl mx-auto mb-12 sm:mb-16">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-[#62666B] leading-relaxed">
+            {sponsorsHeading.description}
+          </p>
+          {/* Summit Yellow line below description */}
+          <div className="w-16 h-1 bg-[#F4C430] rounded-full mx-auto mt-4" />
+        </div>
+
+        {/* ================= SPONSOR GRID AREA WITH ANNOTATIONS ================= */}
+        <div className="relative w-full max-w-[1360px] mx-auto mb-14 sm:mb-16">
+          {/* ================= LEFT-SIDE HANDWRITTEN ANNOTATION ================= */}
+          <div
+            ref={leftAnnotationRef}
+            className="absolute -top-14 -left-4 xl:-left-10 z-20 pointer-events-none hidden lg:block text-left"
+          >
+            <div className="flex items-start gap-2">
+              <div>
                 <span
-                  className={`font-mono text-[10px] uppercase tracking-widest mb-2 px-2 py-0.5 rounded ${
-                    partner.highlight
-                      ? 'bg-black/10 text-black font-semibold'
-                      : 'bg-neutral-100 text-[#626978]'
-                  }`}
+                  className="font-caveat text-2xl xl:text-3xl font-bold text-[#153C30] leading-none block -rotate-6 select-none"
+                  style={{ fontFamily: "'Caveat', cursive, serif" }}
                 >
-                  {partner.category}
+                  Powered by <br />
+                  Industry Leaders
+                </span>
+                <span className="inline-block w-2 h-2 rounded-full bg-[#F4C430] mt-1" />
+              </div>
+
+              {/* Hand-drawn Curved Arrow pointing down-right towards grid */}
+              <svg
+                width="65"
+                height="55"
+                viewBox="0 0 65 55"
+                fill="none"
+                className="mt-3 text-[#153C30]"
+              >
+                <path
+                  d="M10 5 C 28 5, 45 16, 50 42"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M42 38 L 50 42 L 54 32"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          {/* ================= 5 COLUMNS × 3 ROWS CLEAN GRID (15 SPONSORS) ================= */}
+          <div
+            ref={gridRef}
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 md:gap-5 w-full"
+          >
+            {sponsorsData.map((sponsor) => (
+              <a
+                key={sponsor.id}
+                href={sponsor.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Visit ${sponsor.name} on Instagram (${sponsor.instagramHandle})`}
+                className="group relative p-4 sm:p-5 md:p-6 rounded-[18px] sm:rounded-[20px] md:rounded-[22px] bg-white border border-[#DADADA] shadow-[0_4px_18px_rgba(0,0,0,0.03)] hover:border-[#F4C430] hover:shadow-[0_14px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center justify-center min-h-[120px] sm:min-h-[140px] md:min-h-[155px] cursor-pointer overflow-hidden"
+              >
+                {/* Subtle top accent bar on hover */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[#F4C430] transition-colors duration-300" />
+
+                {/* Centered Sponsor Logo */}
+                <div className="w-full h-16 sm:h-20 flex items-center justify-center p-1">
+                  <img
+                    src={sponsor.logo}
+                    alt={`${sponsor.name} Logo`}
+                    loading="lazy"
+                    className="max-h-14 sm:max-h-16 max-w-[82%] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+
+                {/* Brand Name (visible always) */}
+                <span className="font-display font-bold text-xs sm:text-[13px] text-[#111111] group-hover:text-[#F4C430] transition-colors mt-2 text-center line-clamp-1">
+                  {sponsor.name}
                 </span>
 
-                <div className="font-display font-extrabold text-lg sm:text-xl tracking-tight">
-                  {partner.name}
+                {/* Floating Instagram Handle Pill (Reveals on Hover) */}
+                <div className="absolute inset-x-0 bottom-2 sm:bottom-2.5 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 pointer-events-none">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-[#DADADA] shadow-md text-[10px] sm:text-[11px] font-mono font-bold text-[#111111]">
+                    <Instagram className="w-3 h-3 text-[#E1306C]" />
+                    <span className="truncate max-w-[110px]">{sponsor.instagramHandle}</span>
+                  </span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
+        </div>
 
-          {/* Participating Developer Communities from PDF */}
-          {sponsorsContent.communities && (
-            <div className="mt-8 pt-6 border-t border-[#E8E6E0] text-center">
-              <span className="font-mono text-xs text-[#626978] uppercase tracking-widest font-semibold block mb-4">
-                Participating Developer & Innovation Communities
-              </span>
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                {sponsorsContent.communities.map((comm) => (
-                  <span
-                    key={comm.name}
-                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F8F7F3] border border-[#E8E6E0] text-xs font-mono text-[#182538] font-medium"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFD900]" />
-                    <span>{comm.name}</span>
-                  </span>
-                ))}
+        {/* ================= BOTTOM CTA AREA WITH RIGHT ANNOTATION ================= */}
+        <div className="relative flex items-center justify-center mt-2">
+          {/* Centred CTA Button with Outer Dashed Yellow Outline */}
+          <div ref={ctaRef} className="inline-block p-1.5 rounded-full border border-dashed border-[#F4C430] shadow-sm bg-white/50 backdrop-blur-sm">
+            <button
+              type="button"
+              onClick={handleCtaClick}
+              className="inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-[#F4C430] hover:bg-[#E6B91F] text-[#111111] font-display font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(244,196,48,0.45)] cursor-pointer group"
+            >
+              <span>{sponsorsHeading.ctaText}</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
+            </button>
+          </div>
+
+          {/* ================= RIGHT-SIDE HANDWRITTEN ANNOTATION ================= */}
+          <div
+            ref={rightAnnotationRef}
+            className="absolute left-[calc(50%+160px)] sm:left-[calc(50%+180px)] -top-4 pointer-events-none hidden lg:block text-left"
+          >
+            <div className="flex items-start gap-2">
+              {/* Hand-drawn Curved Arrow pointing down-left towards CTA */}
+              <svg
+                width="60"
+                height="50"
+                viewBox="0 0 60 50"
+                fill="none"
+                className="mt-2 text-[#153C30]"
+              >
+                <path
+                  d="M50 5 C 32 5, 18 16, 12 38"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M20 34 L 12 38 L 8 28"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <div>
+                <span
+                  className="font-caveat text-2xl xl:text-3xl font-bold text-[#153C30] leading-none block rotate-6 select-none"
+                  style={{ fontFamily: "'Caveat', cursive, serif" }}
+                >
+                  Building <br />
+                  what&apos;s next
+                </span>
+                <span className="inline-block w-2 h-2 rounded-full bg-[#F4C430] mt-1" />
               </div>
             </div>
-          )}
+          </div>
         </div>
+
+        <p className="font-mono text-[11px] text-[#62666B] mt-5">
+          Click any sponsor logo to explore their official Instagram profile
+        </p>
       </div>
     </section>
   );

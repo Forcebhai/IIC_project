@@ -123,6 +123,7 @@ export default function SpeakersSection() {
         />
       </div>
 
+
       <div className="relative z-10 max-w-[1440px] w-full mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col items-center text-center">
         {/* ================= 3. EYEBROW LABEL ================= */}
         <div ref={eyebrowRef} className="mb-4 sm:mb-5">
