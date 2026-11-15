@@ -73,7 +73,10 @@ export default function SnuLogoMarquee() {
 
       {/* ================= RIBBON 1: OFFICIAL LOGOS SCROLLING LEFT ================= */}
       <div className="relative w-full overflow-hidden bg-[#FFFFFF] py-3.5 sm:py-4 md:py-5 border-b border-[#DADADA]">
-        <div className="flex w-max animate-marquee-left hover:[animation-play-state:paused]">
+        <div
+          className="flex w-max animate-marquee-left hover:[animation-play-state:paused]"
+          style={{ animationDuration: '48s' }}
+        >
           {/* Track Segment A */}
           <div className="flex items-center shrink-0">
             {REPEATED_LOGOS.map((logo, idx) => (
@@ -143,7 +146,10 @@ export default function SnuLogoMarquee() {
 
       {/* ================= RIBBON 2: SUMMIT YELLOW RIBBON SCROLLING RIGHT ================= */}
       <div className="relative w-full overflow-hidden bg-[#FFE500] py-2 sm:py-2.5 md:py-3 border-t border-black/10">
-        <div className="flex w-max animate-marquee-right hover:[animation-play-state:paused]">
+        <div
+          className="flex w-max animate-marquee-right hover:[animation-play-state:paused]"
+          style={{ animationDuration: '40s' }}
+        >
           {/* Track Segment A */}
           <div className="flex items-center shrink-0">
             {REPEATED_TEXT_ITEMS.map((text, idx) => (
