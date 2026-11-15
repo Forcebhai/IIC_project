@@ -1,7 +1,8 @@
 /**
  * Centralized Sponsors & Partners Data — Elevate 360: Bengal AI Start-up Summit 2026
  *
- * Contains 15 confirmed brand sponsors with their high-resolution logos and verified Instagram handles.
+ * Sourced directly from Frontend/public/assets/sponsors/
+ * Contains all 19 brand sponsors with their high-resolution logos and verified Instagram handles.
  * Clicking a sponsor card navigates to their Instagram profile, while hovering reveals their handle.
  */
 
@@ -121,6 +122,22 @@ export const sponsorsData = [
   },
   {
     id: 14,
+    name: 'Sadhana',
+    logo: '/assets/sponsors/Sadhana.jpg',
+    instagramHandle: '@sadhana.official',
+    instagramUrl: 'https://instagram.com/sadhana.official',
+    category: 'Wellness & Lifestyle Partner',
+  },
+  {
+    id: 15,
+    name: 'Shivoham',
+    logo: '/assets/sponsors/Shivoham.jpg',
+    instagramHandle: '@shivoham_creations',
+    instagramUrl: 'https://instagram.com/shivoham_creations',
+    category: 'Spiritual Arts & Wellness Partner',
+  },
+  {
+    id: 16,
     name: 'Sundae, The Garage Café',
     logo: '/assets/sponsors/Sundae, The Garage Café.jpg',
     instagramHandle: '@sundaethegaragecafe',
@@ -128,7 +145,23 @@ export const sponsorsData = [
     category: 'Youth Café & Hangout Partner',
   },
   {
-    id: 15,
+    id: 17,
+    name: 'The Poured Candles',
+    logo: '/assets/sponsors/the poured candles.jpg',
+    instagramHandle: '@thepouredcandles',
+    instagramUrl: 'https://instagram.com/thepouredcandles',
+    category: 'Aromatherapy & Artisan Candles Partner',
+  },
+  {
+    id: 18,
+    name: 'You Are Awesome (YAA)',
+    logo: '/assets/sponsors/You Are Awesome YAA.png',
+    instagramHandle: '@youareawesome.yaa',
+    instagramUrl: 'https://instagram.com/youareawesome.yaa',
+    category: 'Youth Empowerment & Community Partner',
+  },
+  {
+    id: 19,
     name: 'Zenverse',
     logo: '/assets/sponsors/Zenverse.jpg',
     instagramHandle: '@zenverse.club',
