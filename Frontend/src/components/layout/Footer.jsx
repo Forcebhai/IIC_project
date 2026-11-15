@@ -102,52 +102,6 @@ export default function Footer() {
 
         {/* 4. STARTUP COMPETITION CARD */}
 
-
-        {/* 5. VICTORIA MEMORIAL ARCHITECTURAL ILLUSTRATION CARD */}
-        <div className="relative overflow-hidden rounded-2xl bg-white/95 border border-[#DADADA] p-3.5 shadow-sm mb-5">
-          {/* Subtle Technical Blueprint Drafting Grid Inside Frame */}
-          <div className="absolute inset-0 pointer-events-none opacity-25">
-            <svg className="w-full h-full stroke-[#DADADA]" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="archGridMobile" width="36" height="36" patternUnits="userSpaceOnUse">
-                  <path d="M 36 0 L 0 0 0 36" fill="none" strokeWidth="0.7" />
-                  <circle cx="0" cy="0" r="1.2" fill="#62666B" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#archGridMobile)" />
-            </svg>
-          </div>
-
-          <div className="relative z-10 flex items-center justify-between gap-3">
-            {/* Left side: descriptive text */}
-            <div className="flex-1 min-w-0 pr-1">
-              <div className="inline-block px-1.5 py-0.5 rounded bg-[#F7F7F4] border border-[#DADADA] text-[8px] font-mono tracking-widest text-[#62666B] uppercase mb-1">
-                ARCH-REF // 22°32&apos;N 88°20&apos;E
-              </div>
-              <h3 className="font-display font-bold text-xs text-[#111111] leading-tight mb-1">
-                Kolkata: The Cradle of Innovation & Intellect
-              </h3>
-              <p className="font-sans text-[9px] text-[#62666B] leading-tight line-clamp-3 mb-1.5">
-                From historic marble monuments to East India&apos;s emerging AI startup frontier,
-                ELEVATE 360 script the next chapter of Indian technological leadership.
-              </p>
-              <div className="text-[8px] font-mono text-[#888888] tracking-wider">
-                SCALE: 1:500 • VICTORIA MEMORIAL ARCHIVE
-              </div>
-            </div>
-
-            {/* Right side: architectural pencil illustration */}
-            <div className="w-[110px] shrink-0 flex items-center justify-center">
-              <img
-                src="/assets/images/about/victoria_memorial.png"
-                alt="Victoria Memorial Kolkata Architectural Engraving"
-                className="w-full h-auto max-h-[85px] object-contain mix-blend-multiply opacity-95 contrast-[1.08]"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-
         {/* 6. THREE COMPACT NAVIGATION COLUMNS */}
         <div className="pt-4 border-t border-[#DADADA] grid grid-cols-3 gap-2">
           {/* Column 1: THE SUMMIT */}
@@ -378,9 +332,13 @@ export default function Footer() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* B. ARCHITECTURAL VISUAL SECTION — VICTORIA MEMORIAL */}
-        <div className="relative w-full my-10 sm:my-14 overflow-hidden rounded-2xl bg-white/70 border border-[#DADADA] p-6 sm:p-10">
+      {/* ========================================================================= */}
+      {/* ===== B. ARCHITECTURAL VISUAL SECTION — VICTORIA MEMORIAL (Phone & Laptop) = */}
+      {/* ========================================================================= */}
+      <div className="relative z-10 max-w-[1600px] w-full mx-auto px-5 sm:px-8 md:px-14 lg:px-20 my-6 sm:my-10 md:my-12">
+        <div className="relative w-full overflow-hidden rounded-2xl bg-white/70 border border-[#DADADA] p-5 sm:p-8 md:p-10 shadow-sm">
           {/* Subtle Technical Blueprint Drafting Grid Inside Frame */}
           <div className="absolute inset-0 pointer-events-none opacity-40">
             <svg className="w-full h-full stroke-[#DADADA]" xmlns="http://www.w3.org/2000/svg">
@@ -394,10 +352,10 @@ export default function Footer() {
             </svg>
           </div>
 
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left Architectural Annotation Box */}
-            <div className="md:col-span-5 space-y-3">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#F7F7F4] border border-[#DADADA] text-[10px] font-mono tracking-widest uppercase text-[#62666B]">
+            <div className="md:col-span-5 space-y-3 sm:space-y-3.5 text-left">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#F7F7F4] border border-[#DADADA] font-sans text-xs sm:text-sm text-[#62666B] hover:text-[#111111] transition-colors duration-200 cursor-pointer">
                 <span>ARCH-REF // 22°32&apos;N 88°20&apos;E</span>
               </div>
               <h4 className="font-display font-bold text-xl sm:text-2xl text-[#111111] tracking-tight">
@@ -415,11 +373,11 @@ export default function Footer() {
             </div>
 
             {/* Right Architectural Pencil Illustration */}
-            <div className="md:col-span-7 flex justify-center md:justify-end">
+            <div className="md:col-span-7 flex justify-center md:justify-end items-center w-full">
               <img
-                src="/assets/images/about/victoria_memorial.png"
+                src="/assets/logos/elevate_new.png"
                 alt="Victoria Memorial Kolkata Architectural Engraving"
-                className="max-h-[220px] sm:max-h-[260px] md:max-h-[300px] w-auto object-contain object-right mix-blend-multiply opacity-90 contrast-[1.08] filter"
+                className="max-h-[190px] sm:max-h-[230px] md:max-h-[270px] lg:max-h-[310px] w-auto max-w-full object-contain object-center md:object-right mix-blend-multiply opacity-90 contrast-[1.08] filter transition-transform duration-300 hover:scale-[1.01]"
                 loading="lazy"
               />
             </div>
