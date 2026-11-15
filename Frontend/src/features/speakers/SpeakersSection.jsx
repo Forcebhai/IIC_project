@@ -1,229 +1,275 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
-import SpeakerCard from './SpeakerCard';
+import React, { useEffect, useRef } from 'react';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import { gsap, ScrollTrigger } from '../../lib/gsap';
+import { scrollTo } from '../../lib/lenis';
+import SpeakerCarousel from './SpeakerCarousel';
 import { speakersContent } from './speakersData';
 
 /**
- * SpeakersSection Component — Single-Viewport Architectural Showcase
+ * SpeakersSection Component — Curved 3D Perspective Architectural Showcase
  *
- * Configured to fit entirely within one screen on computer screens (desktop & laptop):
- * - Floating navbar clearance with generous top padding
- * - Centered "SPEAKERS" gradient title and thin architectural dividing line
- * - Victoria Memorial monument background aligned with dome centered under heading
- * - Infinite loop horizontal carousel with responsive cards scaled to fit a single viewport
- * - Fits 100% in one page without needing any secondary scroll
+ * Implements the full master specification for Elevate 360:
+ * 1. Technical architectural drafting grid + Victoria Memorial pencil engraving in upper right
+ * 2. Centered editorial heading: "Meet the Minds Shaping Tomorrow" with Summit Yellow highlight
+ * 3. Curved 3D perspective speaker carousel with continuous drift, mouse/touch drag, and controls
+ * 4. Refined handwritten annotations: "Meet the visionaries" & "Ideas that move us" with curved SVG arrows
+ * 5. Prominent bottom CTA "EXPLORE ALL SPEAKERS →" with signature dashed yellow outline
  */
 export default function SpeakersSection() {
-  const containerRef = useRef(null);
-  const trackRef = useRef(null);
+  const sectionRef = useRef(null);
+  const eyebrowRef = useRef(null);
+  const headingRef = useRef(null);
+  const descRef = useRef(null);
+  const carouselWrapperRef = useRef(null);
 
-  // Interaction refs for infinite looping & smooth momentum drag
-  const scrollOffsetRef = useRef(0);
-  const setWidthRef = useRef(0);
-  const isDraggingRef = useRef(false);
-  const pointerStartXRef = useRef(0);
-  const scrollStartXRef = useRef(0);
-  const lastPointerXRef = useRef(0);
-  const lastTimeRef = useRef(0);
-  const velocityRef = useRef(0);
-  const reqAnimIdRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const isHoveredRef = useRef(false);
-
-  // Keep isHovered ref in sync
+  // GSAP ScrollTrigger entrance animation
   useEffect(() => {
-    isHoveredRef.current = isHovered;
-  }, [isHovered]);
+    if (typeof window === 'undefined') return;
 
-  // Duplicate the 4 speakers 4 times (16 cards total) for seamless infinite wrapping
-  const loopedSpeakers = useMemo(() => {
-    const original = speakersContent.speakers || [];
-    const list = [];
-    for (let setIndex = 0; setIndex < 4; setIndex++) {
-      original.forEach((speaker) => {
-        list.push({
-          uniqueKey: `speaker-set-${setIndex}-${speaker.id}`,
-          speaker,
-          isClone: setIndex > 0,
-        });
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    if (prefersReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
       });
-    }
-    return list;
+
+      // Staggered reveal
+      tl.from(eyebrowRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+      })
+        .from(
+          headingRef.current,
+          {
+            y: 35,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+          },
+          '-=0.4'
+        )
+        .from(
+          descRef.current,
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.7,
+            ease: 'power3.out',
+          },
+          '-=0.5'
+        )
+        .from(
+          carouselWrapperRef.current,
+          {
+            scale: 0.94,
+            opacity: 0,
+            duration: 0.9,
+            ease: 'power2.out',
+          },
+          '-=0.4'
+        );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
-  // Measure the exact pixel width of 1 complete set (4 cards + gaps)
-  const measureSetWidth = () => {
-    if (trackRef.current && trackRef.current.children.length >= 5) {
-      const card0 = trackRef.current.children[0];
-      const card4 = trackRef.current.children[4];
-      const measured = card4.offsetLeft - card0.offsetLeft;
-      if (measured > 100) {
-        setWidthRef.current = measured;
-      }
+  const handleCtaClick = () => {
+    const agendaEl = document.querySelector(speakersContent.ctaTarget || '#agenda');
+    if (agendaEl) {
+      scrollTo(agendaEl, { offset: -70 });
     }
-  };
-
-  useEffect(() => {
-    measureSetWidth();
-
-    const handleResize = () => {
-      measureSetWidth();
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Continuous animation loop
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const baseDriftSpeed = 0.9; // smooth right-to-left continuous drift (px/frame)
-
-    const tick = () => {
-      const setWidth = setWidthRef.current || 3600;
-
-      if (!isDraggingRef.current) {
-        if (Math.abs(velocityRef.current) > 0.08) {
-          scrollOffsetRef.current += velocityRef.current;
-          velocityRef.current *= 0.94; // friction decay
-        } else {
-          velocityRef.current = 0;
-          if (!isHoveredRef.current) {
-            scrollOffsetRef.current += baseDriftSpeed;
-          }
-        }
-      }
-
-      // Seamless modulo wrap within [0, setWidth)
-      scrollOffsetRef.current =
-        ((scrollOffsetRef.current % setWidth) + setWidth) % setWidth;
-
-      // Apply GPU-accelerated transform
-      track.style.transform = `translate3d(${-scrollOffsetRef.current}px, 0, 0)`;
-
-      reqAnimIdRef.current = requestAnimationFrame(tick);
-    };
-
-    reqAnimIdRef.current = requestAnimationFrame(tick);
-
-    return () => {
-      if (reqAnimIdRef.current) {
-        cancelAnimationFrame(reqAnimIdRef.current);
-      }
-    };
-  }, []);
-
-  // ================= POINTER / TOUCH DRAGGING =================
-  const handlePointerDown = (e) => {
-    if (e.button !== undefined && e.button !== 0) return;
-
-    isDraggingRef.current = true;
-    const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-    pointerStartXRef.current = clientX;
-    scrollStartXRef.current = scrollOffsetRef.current;
-    lastPointerXRef.current = clientX;
-    lastTimeRef.current = performance.now();
-    velocityRef.current = 0;
-  };
-
-  const handlePointerMove = (e) => {
-    if (!isDraggingRef.current) return;
-
-    const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-    const diff = clientX - pointerStartXRef.current;
-    scrollOffsetRef.current = scrollStartXRef.current - diff;
-
-    const now = performance.now();
-    const dt = now - lastTimeRef.current;
-    if (dt > 10) {
-      const dx = clientX - lastPointerXRef.current;
-      velocityRef.current = -dx * 0.75;
-      lastPointerXRef.current = clientX;
-      lastTimeRef.current = now;
-    }
-  };
-
-  const handlePointerUp = () => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-
-    // Clamp velocity to comfortable range
-    velocityRef.current = Math.max(-20, Math.min(20, velocityRef.current));
   };
 
   return (
     <section
       id="speakers"
-      ref={containerRef}
-      className="relative w-full h-auto md:h-screen md:min-h-[640px] md:max-h-[920px] lg:max-h-[1000px] bg-[#F7F7F4] text-[#111111] overflow-hidden flex flex-col justify-between pt-20 sm:pt-24 md:pt-26 lg:pt-28 pb-4 sm:pb-6 md:pb-8 select-none border-b border-[#DADADA]"
+      ref={sectionRef}
+      className="relative w-full bg-[#FFFFFF] text-[#111111] overflow-hidden py-20 sm:py-28 md:py-32 border-b border-[#DADADA]"
     >
       {/* ================= 1. ARCHITECTURAL DRAFTING GRID OVERLAY ================= */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.45] z-0"
+        className="absolute inset-0 pointer-events-none opacity-[0.38] z-0"
         style={{
           backgroundImage: `
             linear-gradient(to right, #DADADA 1px, transparent 1px),
             linear-gradient(to bottom, #DADADA 1px, transparent 1px)
           `,
-          backgroundSize: '36px 36px',
+          backgroundSize: '48px 48px',
         }}
       />
 
-      {/* ================= 2. VICTORIA MEMORIAL MONUMENT (80% Opacity) ================= */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-center">
+      {/* Architectural Technical Drafting Guides (Crosshairs & Circles) */}
+      <div className="absolute top-12 left-10 w-24 h-24 border border-[#DADADA]/60 rounded-full pointer-events-none opacity-40 hidden md:block" />
+      <div className="absolute top-24 left-22 w-1.5 h-1.5 rounded-full bg-[#F4C430] pointer-events-none opacity-60 hidden md:block" />
+      <div className="absolute bottom-16 right-12 w-32 h-32 border border-[#DADADA]/60 rounded-full pointer-events-none opacity-30 hidden md:block" />
+
+      {/* ================= 2. VICTORIA MEMORIAL ARCHITECTURAL ENGRAVING ================= */}
+      <div className="absolute top-4 right-0 w-[60%] sm:w-[50%] max-w-[720px] pointer-events-none overflow-hidden z-0 select-none opacity-[0.22] mix-blend-multiply">
         <img
-          src="/assets/speakers/Victoria_memorial_Speaker.png"
-          alt="Victoria Memorial Kolkata Architectural Monument"
-          className="w-full h-full object-cover object-[center_28%] md:object-[center_24%] select-none pointer-events-none mix-blend-multiply opacity-80"
-          style={{ opacity: 0.8 }}
-          loading="eager"
+          src="/assets/images/about/victoria_memorial.png"
+          alt="Victoria Memorial Kolkata Architectural Engraving"
+          className="w-full h-auto object-contain object-right-top"
+          loading="lazy"
         />
       </div>
 
-      {/* ================= 3. TOP HEADING & DIVIDER LINE (Clear of floating navbar) ================= */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 text-center shrink-0">
-        {/* Main "SPEAKERS" Header with vertical gradient */}
-        <h2 className="speakers-title-gradient font-display font-black tracking-[0.05em] sm:tracking-[0.07em] text-[40px] xs:text-[46px] sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl uppercase select-none leading-none">
-          {speakersContent.heading}
-        </h2>
+      <div className="relative z-10 max-w-[1440px] w-full mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col items-center text-center">
+        {/* ================= 3. EYEBROW LABEL ================= */}
+        <div ref={eyebrowRef} className="mb-4 sm:mb-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFFFF] border border-[#F4C430] shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#F4C430] animate-pulse" />
+            <span className="font-mono text-xs uppercase tracking-[0.2em] font-bold text-[#111111]">
+              {speakersContent.eyebrow}
+            </span>
+          </div>
+        </div>
 
-        {/* Thin horizontal dividing line below SPEAKERS */}
-        <div className="w-[88%] max-w-4xl mx-auto h-[1.5px] bg-[#B0B0B0] opacity-80 mt-2.5 sm:mt-3.5 mb-1" />
-      </div>
+        {/* ================= 4. MAIN EDITORIAL HEADING ================= */}
+        <div ref={headingRef} className="max-w-4xl mx-auto mb-4 sm:mb-5">
+          <h2 className="font-display font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[#111111] leading-[1.08] tracking-tight">
+            {speakersContent.headingLine1} <br />
+            <span>Shaping </span>
+            <span className="text-[#F4C430] relative inline-block">
+              {speakersContent.accentWord}
+              {/* Subtle underline stroke accent */}
+              <svg
+                className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 text-[#F4C430]"
+                viewBox="0 0 100 12"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M0 8 Q 50 1, 100 8"
+                  stroke="currentColor"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+              </svg>
+            </span>
+          </h2>
+        </div>
 
-      {/* ================= 4. INFINITE LOOP CAROUSEL TRACK (Centered in remaining height) ================= */}
-      <div
-        className="relative z-10 w-full overflow-hidden my-auto py-2 sm:py-3 md:py-4 cursor-grab active:cursor-grabbing select-none shrink-0"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => {
-          setIsHovered(false);
-          handlePointerUp();
-        }}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
-      >
-        <div
-          ref={trackRef}
-          className="inline-flex items-center gap-5 sm:gap-6 md:gap-8 lg:gap-10 will-change-transform"
-          style={{
-            touchAction: 'pan-y',
-          }}
-        >
-          {loopedSpeakers.map((item) => (
-            <SpeakerCard
-              key={item.uniqueKey}
-              speaker={item.speaker}
-              isClone={item.isClone}
-            />
-          ))}
+        {/* ================= 5. SUPPORTING DESCRIPTION ================= */}
+        <div ref={descRef} className="max-w-2xl mx-auto mb-10 sm:mb-14">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-[#62666B] leading-relaxed">
+            {speakersContent.description}
+          </p>
+        </div>
+
+        {/* ================= 6. CAROUSEL LAYER WITH EDITORIAL ANNOTATIONS ================= */}
+        <div ref={carouselWrapperRef} className="relative w-full max-w-full my-2 sm:my-4">
+          {/* DECORATIVE LEFT ANNOTATION ("Meet the visionaries") */}
+          <div className="absolute -top-12 left-4 xl:left-8 z-20 pointer-events-none hidden lg:block text-left">
+            <div className="flex items-start gap-2">
+              <div>
+                <span
+                  className="font-caveat text-2xl xl:text-3xl font-bold text-[#111111] leading-none block -rotate-6 select-none"
+                  style={{ fontFamily: "'Caveat', cursive, serif" }}
+                >
+                  Meet the visionaries
+                </span>
+                <span className="inline-block w-2 h-2 rounded-full bg-[#F4C430] ml-1" />
+              </div>
+
+              {/* Hand-drawn Curved Arrow pointing down-right towards cards */}
+              <svg
+                width="65"
+                height="50"
+                viewBox="0 0 65 50"
+                fill="none"
+                className="mt-2 text-[#111111]"
+              >
+                <path
+                  d="M10 5 C 28 5, 45 15, 52 38"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M44 34 L 52 38 L 56 28"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          {/* DECORATIVE RIGHT ANNOTATION ("Ideas that move us") */}
+          <div className="absolute -top-12 right-4 xl:right-8 z-20 pointer-events-none hidden lg:block text-right">
+            <div className="flex items-start justify-end gap-2">
+              {/* Hand-drawn Curved Arrow pointing down-left towards cards */}
+              <svg
+                width="65"
+                height="50"
+                viewBox="0 0 65 50"
+                fill="none"
+                className="mt-2 text-[#111111]"
+              >
+                <path
+                  d="M55 5 C 37 5, 20 15, 13 38"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M21 34 L 13 38 L 9 28"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              <div>
+                <span
+                  className="font-caveat text-2xl xl:text-3xl font-bold text-[#111111] leading-none block rotate-6 select-none"
+                  style={{ fontFamily: "'Caveat', cursive, serif" }}
+                >
+                  Ideas that move us
+                </span>
+                <span className="inline-block w-2 h-2 rounded-full bg-[#F4C430] mr-1" />
+              </div>
+            </div>
+          </div>
+
+          {/* THE CURVED 3D CAROUSEL COMPONENT */}
+          <SpeakerCarousel
+            speakers={speakersContent.speakers}
+            onSpeakerSelect={handleCtaClick}
+          />
+        </div>
+
+        {/* ================= 7. EXPLORE ALL SPEAKERS CTA ================= */}
+        <div className="mt-8 sm:mt-12">
+          {/* Thin dashed yellow outline container inspired by reference */}
+          <div className="inline-block p-1.5 rounded-full border border-dashed border-[#F4C430] shadow-sm bg-white/50 backdrop-blur-sm">
+            <button
+              type="button"
+              onClick={handleCtaClick}
+              className="inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-[#F4C430] hover:bg-[#E6B91F] text-[#111111] font-display font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(244,196,48,0.45)] cursor-pointer group"
+            >
+              <span>{speakersContent.ctaText}</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
+            </button>
+          </div>
+
+          <p className="font-mono text-[11px] text-[#62666B] mt-3">
+            Click any speaker to explore detailed session tracks and schedule
+          </p>
         </div>
       </div>
-
-      {/* ================= 5. CLEAN BOTTOM SPACING ================= */}
-      <div className="relative z-10 w-full h-2 sm:h-3 md:h-4 pointer-events-none shrink-0" />
     </section>
   );
 }

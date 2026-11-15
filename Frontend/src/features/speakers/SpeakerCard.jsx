@@ -1,153 +1,117 @@
-import React, { useState } from 'react';
-import { Heart, MessageCircle, Send, Bookmark, Instagram } from 'lucide-react';
+import React from 'react';
+import { ArrowUpRight, Linkedin, Sparkles } from 'lucide-react';
 
 /**
- * Custom LinkedIn Badge Icon
- */
-function LinkedInIcon({ className = 'w-4 h-4' }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-    </svg>
-  );
-}
-
-/**
- * SpeakerCard Component — Editorial Showcase Card
+ * SpeakerCard Component — Curved 3D Perspective Showcase Card
  *
- * Designed to fit cleanly within a single laptop / desktop viewport:
- * - Desktop: Horizontal side-by-side card (w-[760px] - w-[920px], h-[330px] - h-[360px])
- * - Mobile: Vertical stacked card (w-[88vw], max-w-[390px])
- * - Preserves the rich cursive handwritten about section, speaker photo, and bottom action bar
+ * Designed to represent confirmed keynote leaders and researchers:
+ * - Large crisp portrait photograph with top-aligned cropping
+ * - Deep dark gradient overlay at bottom for optimal typography contrast
+ * - High-hierarchy typography: Name, Designation, and Organization
+ * - Circular interactive social and profile controls
+ * - Subtle architectural border and soft elevation shadow
  */
-const SpeakerCard = React.forwardRef(function SpeakerCard(
-  { speaker, isClone = false },
-  ref
-) {
-  const [likes, setLikes] = useState(speaker.reactions?.likes || 248);
-  const [liked, setLiked] = useState(false);
-  const [bookmarked, setBookmarked] = useState(false);
-
-  const handleLike = (e) => {
-    e.stopPropagation();
-    setLiked(!liked);
-    setLikes((prev) => (liked ? prev - 1 : prev + 1));
-  };
-
-  const handleBookmark = (e) => {
-    e.stopPropagation();
-    setBookmarked(!bookmarked);
-  };
-
+export default function SpeakerCard({
+  speaker,
+  isActive = false,
+  isSide = false,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+}) {
   return (
     <div
-      ref={ref}
-      aria-hidden={isClone ? 'true' : undefined}
-      className="shrink-0 select-none w-[88vw] max-w-[390px] md:max-w-none md:w-[760px] lg:w-[860px] xl:w-[920px] md:h-[330px] lg:h-[360px] rounded-[24px] sm:rounded-[28px] md:rounded-[32px] bg-[#FAF9F5]/96 backdrop-blur-md border border-[#DEDBD2] shadow-[0_12px_36px_rgba(0,0,0,0.08)] p-4 sm:p-5 md:p-5 lg:p-6 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] hover:border-[#CDC9BF] flex flex-col md:flex-row gap-3.5 sm:gap-4 md:gap-5 lg:gap-6"
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className={`group relative select-none cursor-pointer overflow-hidden rounded-[22px] sm:rounded-[24px] bg-[#111111] border transition-all duration-300 ${
+        isActive
+          ? 'border-[#F4C430] shadow-[0_22px_50px_rgba(0,0,0,0.22)]'
+          : 'border-[#DADADA]/60 hover:border-[#F4C430]/70 shadow-[0_14px_35px_rgba(0,0,0,0.10)]'
+      }`}
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
     >
-      {/* ================= 1. SPEAKER PHOTOGRAPH ================= */}
-      <div className="w-full md:w-[260px] lg:w-[300px] xl:w-[320px] aspect-[4/3] md:aspect-auto md:h-full rounded-2xl md:rounded-[20px] overflow-hidden shrink-0 shadow-sm border border-black/5 bg-[#EAE8E2] relative group">
+      {/* ================= 1. PORTRAIT IMAGE ================= */}
+      <div className="absolute inset-0 w-full h-full bg-[#182538] overflow-hidden">
         <img
           src={speaker.image}
-          alt={isClone ? '' : speaker.name}
+          alt={speaker.name}
           draggable="false"
-          className="w-full h-full object-cover object-top pointer-events-none transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
+          className="w-full h-full object-cover object-top filter grayscale contrast-105 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
         />
-        {/* Subtle photo vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+
+        {/* Top subtle tone filter */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-transparent pointer-events-none" />
+
+        {/* Session Track Top Pill */}
+        {speaker.topic && (
+          <div className="absolute top-3.5 left-3.5 right-3.5 z-10 flex items-center justify-between pointer-events-none">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[9px] font-mono font-medium text-[#F4C430] tracking-wide uppercase truncate max-w-[85%]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#F4C430] shrink-0" />
+              <span className="truncate">{speaker.sessionDate?.split('·')[0]?.trim() || 'SUMMIT 2026'}</span>
+            </span>
+          </div>
+        )}
+
+        {/* Deep Bottom Gradient for Text Legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/70 via-40% to-transparent pointer-events-none" />
       </div>
 
-      {/* ================= 2. SPEAKERS ABOUT & SOCIALS (Red Circled Section) ================= */}
-      <div className="flex-1 flex flex-col justify-between min-w-0 md:pl-1 h-full">
-        {/* Cursive / Handwritten About Section */}
-        <div className="overflow-hidden my-auto py-1">
-          <p
-            className="font-caveat text-[#1A1A1A] text-[15px] sm:text-base md:text-[17px] lg:text-[19px] xl:text-[20px] leading-[1.36] md:leading-[1.40] select-none tracking-wide text-justify line-clamp-6 md:line-clamp-6"
-            style={{
-              fontFamily: "'Caveat', cursive, serif",
-              fontOpticalSizing: 'auto',
-            }}
-          >
-            {speaker.about}
-          </p>
-        </div>
+      {/* ================= 2. CONTENT HIERARCHY AT BOTTOM ================= */}
+      <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 flex flex-col justify-end z-10 text-left">
+        {/* Organization / Affiliation Badge */}
+        <span className="font-mono text-[10px] sm:text-[11px] font-bold text-[#F4C430] tracking-wider uppercase truncate block mb-1">
+          {speaker.organization}
+        </span>
 
-        {/* Bottom Socials & Reaction Actions */}
-        <div className="flex items-center justify-between pt-2.5 sm:pt-3 border-t border-[#E5E2D9]">
-          {/* Left: Social Media Badges */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            {/* LinkedIn Badge */}
+        {/* Speaker Name */}
+        <h3 className="font-display font-extrabold text-base sm:text-lg text-white leading-tight uppercase tracking-tight line-clamp-1 mb-1 group-hover:text-[#F4C430] transition-colors">
+          {speaker.name}
+        </h3>
+
+        {/* Professional Designation */}
+        <p className="font-sans text-[11px] sm:text-xs text-neutral-300 leading-snug line-clamp-2 mb-3">
+          {speaker.designation}
+        </p>
+
+        {/* Social / Profile Action Row */}
+        <div className="flex items-center justify-between pt-2.5 border-t border-white/10">
+          <div className="flex items-center gap-2">
+            {/* LinkedIn */}
             <a
-              href={speaker.socials?.linkedin || 'https://linkedin.com'}
+              href={speaker.linkedin || 'https://linkedin.com'}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded bg-[#0077B5] flex items-center justify-center text-white hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
+              onClick={(e) => e.stopPropagation()}
+              aria-label={`${speaker.name} LinkedIn Profile`}
+              className="w-7 h-7 rounded-full bg-white/10 hover:bg-[#F4C430] hover:text-[#111111] text-white flex items-center justify-center transition-all duration-200 cursor-pointer"
             >
-              <LinkedInIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <Linkedin className="w-3.5 h-3.5 fill-current" />
             </a>
 
-            {/* Instagram Badge */}
+            {/* Website / Bio Link */}
             <a
-              href={speaker.socials?.instagram || 'https://instagram.com'}
+              href={speaker.website || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg border-[1.5px] border-[#1A1A1A] bg-transparent flex items-center justify-center text-[#1A1A1A] hover:bg-black/5 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer"
+              onClick={(e) => e.stopPropagation()}
+              aria-label={`${speaker.name} Institutional Profile`}
+              className="w-7 h-7 rounded-full bg-white/10 hover:bg-[#F4C430] hover:text-[#111111] text-white flex items-center justify-center transition-all duration-200 cursor-pointer"
             >
-              <Instagram className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.2]" />
+              <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.2]" />
             </a>
           </div>
 
-          {/* Right: Four Circular Reaction Badges */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            {/* 1. Red Heart */}
-            <button
-              onClick={handleLike}
-              type="button"
-              aria-label="Like"
-              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer ${
-                liked ? 'bg-[#DC2626] ring-2 ring-[#DC2626]/30' : 'bg-[#E53E3E]'
-              }`}
-            >
-              <Heart className="w-3.5 h-3.5 fill-white stroke-none" />
-            </button>
-
-            {/* 2. Yellow Chat Bubble */}
-            <button
-              type="button"
-              aria-label="Comments"
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#ECC94B] flex items-center justify-center text-[#1A1A1A] shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer"
-            >
-              <MessageCircle className="w-3.5 h-3.5 fill-[#1A1A1A] stroke-none" />
-            </button>
-
-            {/* 3. Green Send / Plane */}
-            <button
-              type="button"
-              aria-label="Share"
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#38A169] flex items-center justify-center text-white shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer"
-            >
-              <Send className="w-3.5 h-3.5 fill-white stroke-none -rotate-12 translate-x-[0.5px]" />
-            </button>
-
-            {/* 4. Blue Bookmark */}
-            <button
-              onClick={handleBookmark}
-              type="button"
-              aria-label="Bookmark"
-              className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-white shadow-sm hover:scale-110 active:scale-90 transition-transform cursor-pointer ${
-                bookmarked ? 'bg-[#1D4ED8] ring-2 ring-[#1D4ED8]/30' : 'bg-[#3182CE]'
-              }`}
-            >
-              <Bookmark className="w-3.5 h-3.5 fill-white stroke-none" />
-            </button>
-          </div>
+          <span className="text-[10px] font-mono text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+            <span>View</span>
+            <ArrowUpRight className="w-3 h-3 text-[#F4C430]" />
+          </span>
         </div>
       </div>
     </div>
   );
-});
-
-export default SpeakerCard;
+}
