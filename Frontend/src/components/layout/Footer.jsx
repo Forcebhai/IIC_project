@@ -101,29 +101,7 @@ export default function Footer() {
         </div>
 
         {/* 4. STARTUP COMPETITION CARD */}
-        <div className="rounded-2xl bg-white border border-[#DADADA] p-4 shadow-sm mb-4">
-          <div className="flex items-center gap-2 flex-wrap mb-2">
-            <span className="px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-wider bg-[#FEF7DA] text-[#111111] border border-[#F4C430]/40">
-              PITCH STAGE
-            </span>
-            <span className="font-mono text-[10px] font-bold text-[#111111] uppercase tracking-wider">
-              THE NEXT BIG IDEA STARTS HERE.
-            </span>
-          </div>
-          <p className="font-sans text-[11px] text-[#62666B] leading-snug mb-3">
-            Discover emerging AI startups and innovative solutions shaping tomorrow.
-          </p>
-          <div className="pt-2 border-t border-[#DADADA] grid grid-cols-2 gap-2 text-[10.5px] font-mono">
-            <div>
-              <span className="text-[#62666B] block text-[9px] uppercase tracking-wider">SEMI-FINAL</span>
-              <strong className="font-bold text-[#111111]">18 Nov · Top 15</strong>
-            </div>
-            <div>
-              <span className="text-[#62666B] block text-[9px] uppercase tracking-wider">GRAND FINAL</span>
-              <strong className="font-bold text-[#111111]">19 Nov · Top 5</strong>
-            </div>
-          </div>
-        </div>
+
 
         {/* 5. VICTORIA MEMORIAL ARCHITECTURAL ILLUSTRATION CARD */}
         <div className="relative overflow-hidden rounded-2xl bg-white/95 border border-[#DADADA] p-3.5 shadow-sm mb-5">
@@ -291,30 +269,8 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* STARTUP COMPETITION HIGHLIGHT (Editorial Callout) */}
-            <div className="relative p-5 sm:p-6 rounded-2xl bg-white border border-[#DADADA] shadow-sm max-w-md">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-[#F4C430]/20 text-[#111111] border border-[#F4C430]/40">
-                  Pitch Stage
-                </span>
-                <span className="font-mono text-xs font-bold text-[#111111] tracking-wider uppercase">
-                  The Next Big Idea Starts Here.
-                </span>
-              </div>
-              <p className="font-sans text-xs sm:text-sm text-[#62666B] leading-snug mb-3">
-                Discover emerging AI startups and innovative solutions shaping tomorrow.
-              </p>
-              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#DADADA] text-[11px] font-mono text-[#111111]">
-                <div>
-                  <span className="text-[#62666B] block text-[10px]">SEMI-FINAL</span>
-                  <strong className="font-semibold">18 Nov · Top 15</strong>
-                </div>
-                <div>
-                  <span className="text-[#62666B] block text-[10px]">GRAND FINAL</span>
-                  <strong className="font-semibold">19 Nov · Top 5</strong>
-                </div>
-              </div>
-            </div>
+
+
           </div>
 
           {/* RIGHT SIDE: Three Navigation Columns */}

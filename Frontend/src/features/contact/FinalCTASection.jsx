@@ -438,38 +438,90 @@ export default function FinalCTASection() {
         </div>
 
         {/* ================= 3. BOTTOM HELPDESK & CAMPUS INQUIRIES STRIP ================= */}
-        <div className="w-full max-w-[1360px] mx-auto p-5 sm:p-6 rounded-2xl bg-[#F7F7F4] border border-[#DADADA] flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3 text-center md:text-left">
-            <div className="w-10 h-10 rounded-full bg-white border border-[#DADADA] flex items-center justify-center text-[#111111] shrink-0 shadow-sm">
-              <Mail className="w-4 h-4 text-[#F4C430]" />
+        <div className="w-full max-w-[1360px] mx-auto p-6 sm:p-8 rounded-3xl bg-[#F7F7F4] border border-[#DADADA] shadow-sm flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-white border border-[#DADADA] flex items-center justify-center text-[#111111] shrink-0 shadow-sm">
+              <Phone className="w-5 h-5 text-[#F4C430]" />
             </div>
             <div>
-              <div className="font-display font-bold text-xs sm:text-sm text-[#111111] uppercase tracking-wide">
-                Need Help with Passes, Pitch Decks, or Media Accreditation?
+              <div className="inline-flex items-center gap-2 mb-1">
+                <span className="w-2 h-2 rounded-full bg-[#38A169]" />
+                <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-widest text-[#62666B] font-bold">
+                  OFFICIAL SUMMIT HELPDESK & STUDENT COORDINATORS
+                </span>
               </div>
-              <div className="font-mono text-[11px] text-[#62666B] mt-0.5">
-                Official Helpdesk: <span className="font-bold text-[#111111]">{siteConfig.contact.email}</span> · {siteConfig.contact.phone}
-              </div>
+              <h4 className="font-display font-black text-lg sm:text-xl text-[#111111] tracking-tight">
+                Need Help with Passes, Pitch Decks, or Event Logistics?
+              </h4>
+              <p className="font-sans text-xs sm:text-sm text-[#62666B] mt-0.5">
+                Reach out directly to our student coordinators or write to Secretariat:{' '}
+                <a
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="text-[#111111] font-bold underline hover:text-[#F4C430] transition-colors"
+                >
+                  {siteConfig.contact.email}
+                </a>
+              </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 w-full md:w-auto justify-center">
-            <a
-              href={`mailto:${siteConfig.contact.email}`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-100 border border-[#DADADA] text-[#111111] font-mono text-xs font-bold transition-all shadow-sm cursor-pointer"
-            >
-              <Mail className="w-3.5 h-3.5 text-[#F4C430]" />
-              <span>EMAIL US</span>
-            </a>
+          {/* Coordinators Contact Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full xl:w-auto shrink-0">
+            {/* Coordinator 1: Aparajita Gorai */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-[#DADADA] shadow-sm flex flex-col justify-between hover:border-[#F4C430] hover:shadow-md transition-all">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="font-display font-bold text-sm sm:text-base text-[#111111] tracking-tight">
+                  Aparajita Gorai
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-[#F7F7F4] text-[9px] font-mono font-bold text-[#62666B] border border-[#DADADA]">
+                  HELPDESK
+                </span>
+              </div>
+              <div className="space-y-1.5 text-xs font-mono">
+                <a
+                  href="tel:+919933305603"
+                  className="flex items-center gap-2 text-[#444444] hover:text-[#111111] hover:font-bold transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#F4C430] shrink-0" />
+                  <span>+91 99333 05603</span>
+                </a>
+                <a
+                  href="mailto:aparajita.4343@gmail.com"
+                  className="flex items-center gap-2 text-[#444444] hover:text-[#111111] transition-colors truncate max-w-[210px]"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#F4C430] shrink-0" />
+                  <span className="truncate">aparajita.4343@gmail.com</span>
+                </a>
+              </div>
+            </div>
 
-            <button
-              type="button"
-              onClick={() => handleScrollToSection('#venue')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#111111] hover:bg-neutral-800 text-white font-mono text-xs font-bold transition-all shadow-sm cursor-pointer"
-            >
-              <Compass className="w-3.5 h-3.5 text-[#F4C430]" />
-              <span>VENUE MAP</span>
-            </button>
+            {/* Coordinator 2: Soumi Jash */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-[#DADADA] shadow-sm flex flex-col justify-between hover:border-[#F4C430] hover:shadow-md transition-all">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="font-display font-bold text-sm sm:text-base text-[#111111] tracking-tight">
+                  Soumi Jash
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-[#F7F7F4] text-[9px] font-mono font-bold text-[#62666B] border border-[#DADADA]">
+                  HELPDESK
+                </span>
+              </div>
+              <div className="space-y-1.5 text-xs font-mono">
+                <a
+                  href="tel:+917001834488"
+                  className="flex items-center gap-2 text-[#444444] hover:text-[#111111] hover:font-bold transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#F4C430] shrink-0" />
+                  <span>+91 70018 34488</span>
+                </a>
+                <a
+                  href="mailto:soumi06jash@gmail.com"
+                  className="flex items-center gap-2 text-[#444444] hover:text-[#111111] transition-colors truncate max-w-[210px]"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#F4C430] shrink-0" />
+                  <span className="truncate">soumi06jash@gmail.com</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

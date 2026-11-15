@@ -28,5 +28,19 @@ export const siteConfig = {
   contact: {
     email: "elevate360@snuniv.ac.in",
     phone: "+91 (033) 7102 1100",
+    coordinators: [
+      {
+        name: "Aparajita Gorai",
+        phone: "+91 99333 05603",
+        phoneRaw: "+919933305603",
+        email: "aparajita.4343@gmail.com",
+      },
+      {
+        name: "Soumi Jash",
+        phone: "+91 70018 34488",
+        phoneRaw: "+917001834488",
+        email: "soumi06jash@gmail.com",
+      },
+    ],
   },
 };
