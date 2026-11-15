@@ -4,7 +4,7 @@ import MobileNav from './MobileNav';
 import { navLinks } from '../../config/navigation';
 import { siteConfig } from '../../config/siteConfig';
 import { scrollTo } from '../../lib/lenis';
-import { Menu } from 'lucide-react';
+import { Menu, Sparkles } from 'lucide-react';
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -51,32 +51,27 @@ export default function Navbar() {
 
   return (
     <>
-      {/* 
-        Responsive Navigation Header:
-        - Mobile (< lg): Normal edge-to-edge top bar with backdrop blur and border-b (not capsulated)
-        - Desktop (lg+): Floating separate glassmorphic capsule design
-      */}
-      <header className="fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 sm:px-6 lg:px-12 py-3 lg:py-0 lg:pt-6 bg-[#050814]/90 backdrop-blur-xl border-b border-white/10 lg:bg-transparent lg:border-none lg:backdrop-blur-none pointer-events-auto lg:pointer-events-none transition-all duration-300">
+      <header className="fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 sm:px-8 lg:px-12 pt-3.5 sm:pt-6 pointer-events-none">
 
-        {/* Left: Brand Logo (Normal on mobile, glass capsule on desktop) */}
+        {/* Left: Clean Brand Logo Capsule */}
         <a
           href="#hero"
           onClick={(e) => {
             e.preventDefault();
             handleNavigate('#hero', 'hero');
           }}
-          className="pointer-events-auto flex items-center lg:px-4 lg:py-2 lg:rounded-full lg:bg-black/35 lg:backdrop-blur-2xl lg:border lg:border-white/20 lg:shadow-[0_4px_24px_rgba(0,0,0,0.3)] lg:hover:border-[#F4C430]/80 lg:hover:bg-black/50 transition-all duration-300 group cursor-pointer"
+          className="pointer-events-auto flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full  hover:border-[#F4C430]/80 hover:bg-black/50 transition-all duration-300 group cursor-pointer"
         >
           <img
             src="/assets/logos/Elevate360_logo.png"
             alt="Elevate 360 Official Logo"
-            className="h-7 sm:h-8 lg:h-8.5 w-auto max-w-[135px] sm:max-w-[160px] lg:max-w-[195px] object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-6 sm:h-7.5 md:h-8.5 w-auto max-w-[130px] sm:max-w-[165px] md:max-w-[195px] object-contain transition-transform duration-300 group-hover:scale-105"
             loading="eager"
           />
         </a>
 
-        {/* Center: Pure Glassmorphic Pill Capsule for Desktop */}
-        <div className="pointer-events-auto hidden lg:block">
+        {/* Center: Pure Glassmorphic Pill Capsule (Slightly larger, rich contrast) */}
+        <div className="pointer-events-auto">
           <DesktopNav
             links={navLinks.filter(l => l.id !== 'hero')}
             activeSection={activeSection}
@@ -84,31 +79,30 @@ export default function Navbar() {
           />
         </div>
 
-        {/* Right: Actions */}
+        {/* Right: Clean White Pill Button linking to Vybe Cerkle */}
         <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
-          {/* Register Button */}
           <a
             href={siteConfig.registrationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 sm:px-5 lg:px-6 py-2 sm:py-2.5 rounded-full bg-white hover:bg-[#F4C430] hover:text-[#111111] text-[#0F172A] font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer inline-flex items-center justify-center uppercase tracking-wider"
+            className="px-5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-white hover:bg-white/95 text-[#0F172A] font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer inline-flex items-center justify-center"
           >
             Register Now
           </a>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile hamburger button */}
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="lg:hidden p-2 rounded-xl text-white hover:text-[#F4C430] hover:bg-white/10 transition-colors cursor-pointer"
+            className="lg:hidden w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/25 backdrop-blur-md border border-white/25 flex items-center justify-center text-white transition-colors"
             aria-label="Open navigation menu"
           >
-            <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+            <Menu className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
 
       </header>
 
-      {/* Mobile Drawer (Normal full-screen drawer on mobile) */}
+      {/* Mobile Drawer */}
       <MobileNav
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}

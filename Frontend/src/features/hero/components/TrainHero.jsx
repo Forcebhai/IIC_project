@@ -50,6 +50,16 @@ export default function TrainHero({ onOpenRegister }) {
           isReady={isInitialReady}
         />
 
+        {/* Top-to-bottom White Gradient Overlay to highlight Navbar, Logo, and Links */}
+        <div
+          className="absolute top-0 inset-x-0 h-44 sm:h-56 md:h-72 pointer-events-none z-10"
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.82) 28%, rgba(255, 255, 255, 0.4) 62%, rgba(255, 255, 255, 0) 100%)',
+          }}
+          aria-hidden="true"
+        />
+
         {/* Horizontal Story Panels floating inside central window */}
         <HorizontalStory
           ref={storyTrackRef}

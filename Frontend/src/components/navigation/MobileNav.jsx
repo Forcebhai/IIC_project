@@ -13,66 +13,72 @@ export default function MobileNav({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 lg:hidden flex flex-col justify-between bg-[#050814]/98 backdrop-blur-2xl text-white p-6 sm:p-8 animate-in fade-in slide-in-from-top-4 duration-300 pointer-events-auto">
-      {/* Top Header Row: Logo & Close Button */}
-      <div className="flex items-center justify-between pb-5 border-b border-white/10">
-        <img
-          src="/assets/logos/Elevate360_logo.png"
-          alt="Elevate 360 Official Logo"
-          className="h-8 w-auto max-w-[150px] object-contain"
-        />
+    <div className="fixed inset-0 z-50 lg:hidden flex flex-col justify-start p-4 bg-black/60 backdrop-blur-xl animate-in fade-in duration-200 pointer-events-auto">
+      {/* Frosted Glass Capsule Drawer */}
+      <div className="w-full rounded-3xl p-4 bg-white/20 backdrop-blur-2xl border border-white/30 shadow-2xl text-white relative overflow-hidden">
 
-        <button
-          onClick={onClose}
-          className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors cursor-pointer"
-          aria-label="Close navigation"
-        >
-          <X className="w-5 h-5" />
-        </button>
-      </div>
+        {/* Header inside drawer */}
+        <div className="flex items-center justify-between pb-4 border-b border-white/15">
+          <div className="flex items-center gap-2">
+            <img
+              src="/assets/logos/Elevate360_logo.png"
+              alt="Elevate 360 Official Logo"
+              className="h-7 w-auto max-w-[140px] object-contain"
+            />
+            <span className="text-[11px] text-white/70 font-mono">Kolkata 2026</span>
+          </div>
 
-      {/* Main Navigation Links List */}
-      <nav className="flex flex-col gap-2 py-6 overflow-y-auto">
-        {links.map((link) => {
-          const isActive = activeSection === link.id;
-          return (
-            <a
-              key={link.id}
-              href={link.href}
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate(link.href, link.id);
-                onClose();
-              }}
-              className={cn(
-                'flex items-center justify-between px-4 py-3 rounded-xl font-display font-bold text-lg tracking-wide uppercase transition-all',
-                isActive
-                  ? 'bg-[#F4C430] text-[#111111]'
-                  : 'text-neutral-300 hover:text-white hover:bg-white/5'
-              )}
-            >
-              <span>{link.label}</span>
-              <ArrowRight className="w-5 h-5 opacity-70" />
-            </a>
-          );
-        })}
-      </nav>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+            aria-label="Close menu"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
 
-      {/* Bottom Footer Actions */}
-      <div className="pt-5 border-t border-white/10 flex flex-col gap-3">
-        <a
-          href={siteConfig.registrationUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={onClose}
-          className="w-full py-4 rounded-xl bg-[#F4C430] hover:bg-[#E6B91F] text-[#111111] font-display font-black text-sm tracking-widest uppercase flex items-center justify-center gap-2 shadow-lg transition-transform active:scale-98 cursor-pointer"
-        >
-          <span>REGISTER NOW</span>
-          <ArrowRight className="w-4 h-4" />
-        </a>
-        <p className="text-center font-mono text-xs text-neutral-400">
-          Sister Nivedita University • 17–19 November 2026
-        </p>
+        {/* Links list */}
+        <div className="flex flex-col gap-1.5 py-4">
+          {links.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(link.href, link.id);
+                  onClose();
+                }}
+                className={cn(
+                  'flex items-center justify-between px-4 py-2.5 rounded-xl font-medium text-sm transition-all',
+                  isActive
+                    ? 'bg-white text-[#0F172A] font-bold shadow-md'
+                    : 'text-white/90 hover:bg-white/10'
+                )}
+              >
+                <span>{link.label}</span>
+                <ArrowRight className="w-4 h-4 opacity-70" />
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Register CTA inside mobile nav linking directly to Vybe Cerkle */}
+        <div className="pt-4 border-t border-white/15 flex flex-col gap-2">
+          <a
+            href={siteConfig.registrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onClose}
+            className="w-full py-3 rounded-full bg-white text-[#0F172A] font-bold text-sm flex items-center justify-center shadow-lg hover:bg-white/90"
+          >
+            Register Now
+          </a>
+          <p className="text-center text-[10px] text-white/70 font-mono">
+            Sister Nivedita University • 17–19 November 2026
+          </p>
+        </div>
       </div>
     </div>
   );
