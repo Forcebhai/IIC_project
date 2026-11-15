@@ -114,14 +114,7 @@ export default function SpeakersSection() {
       <div className="absolute bottom-16 right-12 w-32 h-32 border border-[#DADADA]/60 rounded-full pointer-events-none opacity-30 hidden md:block" />
 
       {/* ================= 2. VICTORIA MEMORIAL ARCHITECTURAL ENGRAVING ================= */}
-      <div className="absolute top-4 right-0 w-[60%] sm:w-[50%] max-w-[720px] pointer-events-none overflow-hidden z-0 select-none opacity-[0.22] mix-blend-multiply">
-        <img
-          src="/assets/images/about/victoria_memorial.png"
-          alt="Victoria Memorial Kolkata Architectural Engraving"
-          className="w-full h-auto object-contain object-right-top"
-          loading="lazy"
-        />
-      </div>
+
 
 
       <div className="relative z-10 max-w-[1440px] w-full mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col items-center text-center">
