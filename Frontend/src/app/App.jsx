@@ -3,6 +3,7 @@ import Navbar from '../components/navigation/Navbar';
 import TrainHero from '../features/hero/components/TrainHero';
 import ElevateMarquee from '../components/common/ElevateMarquee';
 import AboutSection from '../features/about/AboutSection';
+import SnuLogoMarquee from '../components/common/SnuLogoMarquee';
 import ExperienceSection from '../features/experiences/ExperienceSection';
 import AgendaSection from '../features/agenda/AgendaSection';
 import SpeakersSection from '../features/speakers/SpeakersSection';
@@ -39,6 +40,9 @@ export default function App() {
 
         {/* Section 01: About Elevate 360 (Victoria Memorial 6-Chapter Storytelling) */}
         <AboutSection />
+
+        {/* Institutional Host Partner Marquee: Sister Nivedita University, SNU-IIC, SNU-IQAC */}
+        <SnuLogoMarquee />
 
         {/* Section 02: Summit Experiences (5 Large Editorial Rows) */}
         <ExperienceSection />

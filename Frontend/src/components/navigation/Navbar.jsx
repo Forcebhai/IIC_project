@@ -60,7 +60,7 @@ export default function Navbar() {
             e.preventDefault();
             handleNavigate('#hero', 'hero');
           }}
-          className="pointer-events-auto flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full  hover:border-[#F4C430]/80 hover:bg-black/50 transition-all duration-300 group cursor-pointer"
+          className="pointer-events-auto flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition-all duration-300 group cursor-pointer"
         >
           <img
             src="/assets/logos/Elevate360_logo.png"

@@ -377,7 +377,7 @@ export default function Footer() {
               <img
                 src="/assets/logos/elevate_new.png"
                 alt="Victoria Memorial Kolkata Architectural Engraving"
-                className="max-h-[190px] sm:max-h-[230px] md:max-h-[270px] lg:max-h-[310px] w-auto max-w-full object-contain object-center md:object-right mix-blend-multiply opacity-90 contrast-[1.08] filter transition-transform duration-300 hover:scale-[1.01]"
+                className="max-h-[190px] sm:max-h-[230px] md:max-h-[270px] lg:max-h-[310px] w-auto max-w-full rounded-[20px] object-contain object-center md:object-right mix-blend-multiply opacity-90 contrast-[1.08] filter transition-transform duration-300 hover:scale-[1.01]"
                 loading="lazy"
               />
             </div>
