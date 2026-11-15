@@ -75,9 +75,16 @@ export default function SpeakerCard({
         </h3>
 
         {/* Professional Designation */}
-        <p className="font-sans text-[11px] sm:text-xs text-neutral-300 leading-snug line-clamp-2 mb-3">
+        <p className="font-sans text-[11px] sm:text-xs text-[#F4C430]/90 leading-snug line-clamp-1 mb-1 font-medium">
           {speaker.designation}
         </p>
+
+        {/* Speaker About / Bio */}
+        {speaker.about && (
+          <p className="font-sans text-[10.5px] sm:text-[11px] text-neutral-300 leading-snug line-clamp-2 mb-2 font-light">
+            {speaker.about}
+          </p>
+        )}
 
         {/* Social / Profile Action Row */}
         <div className="flex items-center justify-between pt-2.5 border-t border-white/10">
