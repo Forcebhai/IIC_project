@@ -269,7 +269,8 @@ export default function SponsorsSection() {
                   <img
                     src={encodeURI(sponsor.logo)}
                     alt={`${sponsor.name} Logo`}
-                    loading="eager"
+                    loading="lazy"
+                    decoding="async"
                     className="max-h-16 sm:max-h-20 max-w-[85%] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>

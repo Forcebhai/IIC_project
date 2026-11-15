@@ -45,6 +45,23 @@ export default function SpeakerCarousel({
   });
 
   const [activeCenterIndex, setActiveCenterIndex] = useState(0);
+  const isVisibleRef = useRef(true);
+
+  // Pause expensive 3D animation loop when carousel is off-screen
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // Compute responsive layout metrics on mount & resize
   const updateMetrics = useCallback(() => {
@@ -102,6 +119,12 @@ export default function SpeakerCarousel({
     const baseDriftSpeed = prefersReducedMotion ? 0 : 0.0022; // ~1 card per 7 seconds
 
     const tick = (now) => {
+      // Skip geometry updates when off-screen to preserve mobile CPU/GPU
+      if (!isVisibleRef.current) {
+        animFrameIdRef.current = requestAnimationFrame(tick);
+        return;
+      }
+
       // 1. Position update logic
       if (!isDraggingRef.current) {
         if (isSnappingRef.current) {

@@ -19,26 +19,32 @@ export default function TrainCanvas({ currentFrameIndex, getFrame, isReady }) {
     lastRenderedIndexRef.current = currentFrameIndex;
   }, [currentFrameIndex, getFrame]);
 
-  // Handle Resize and DPR
+  // Handle Resize and DPR with adaptive mobile scaling
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const handleResize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap at 2 for optimal GPU performance
+      const isMobile = window.innerWidth < 768;
+      // Cap DPR to 1 on mobile to eliminate GPU fill-rate strain and cut canvas GPU memory by 75%
+      const maxDpr = isMobile ? 1 : 1.5;
+      const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
+      const targetW = Math.round(width * dpr);
+      const targetH = Math.round(height * dpr);
+
+      if (canvas.width !== targetW || canvas.height !== targetH) {
+        canvas.width = targetW;
+        canvas.height = targetH;
       }
 
       renderFrame();
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
     return () => window.removeEventListener('resize', handleResize);
   }, [renderFrame]);
 

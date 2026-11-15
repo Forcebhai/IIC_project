@@ -41,6 +41,7 @@ export default function SpeakerCard({
           alt={speaker.name}
           draggable="false"
           loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-top filter grayscale contrast-105 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
         />
 

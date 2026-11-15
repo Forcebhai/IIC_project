@@ -18,6 +18,14 @@ export default defineConfig({
     target: 'esnext',
     sourcemap: false,
     chunkSizeWarningLimit: 1200,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-gsap': ['gsap', 'lenis'],
+          'vendor-icons': ['lucide-react'],
+        },
+      },
+    },
   },
 });
-

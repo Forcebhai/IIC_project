@@ -111,7 +111,7 @@ export default function StartupSection({ onOpenPitchModal }) {
                 </span>
               </div>
               <div className="font-display font-black text-6xl sm:text-7xl md:text-8xl text-[#182538] tracking-tight leading-none my-1 flex items-baseline">
-                100<span className="text-[#FFD900] ml-1">+</span>
+                50<span className="text-[#FFD900] ml-1">+</span>
               </div>
               <div className="font-display font-bold text-xl sm:text-2xl text-[#080808] mt-2 uppercase tracking-wide">
                 Student Start-up Pitching Teams
@@ -136,7 +136,7 @@ export default function StartupSection({ onOpenPitchModal }) {
                     STAGE 01 · SEMI-FINAL
                   </span>
                   <div className="font-display font-bold text-base sm:text-lg text-[#182538]">
-                    18 Nov · Top 15 Shortlist
+                    18 Nov · Top 10 Shortlist
                   </div>
                   <span className="text-[11px] text-[#626978] block mt-0.5">
                     Closed-door jury evaluation & deck review
@@ -167,9 +167,9 @@ export default function StartupSection({ onOpenPitchModal }) {
                   <span>REGISTER PITCH COMPETITION</span>
                   <ArrowRight className="w-5 h-5 text-[#FFD900] group-hover:translate-x-1 transition-transform" />
                 </a>
-                <span className="text-xs font-mono text-[#626978] inline-flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#38A169]" />
-                  Supported by SNU-IIC Incubation Cell
+                <span className="text-xs font-mono text-red-500 inline-flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                  REGISTRATION CLOSED
                 </span>
               </div>
             </div>

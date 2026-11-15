@@ -30,7 +30,8 @@ export default function AboutSection() {
           src="/assets/images/about/victoria_memorial.png"
           alt="Victoria Memorial Kolkata Architectural Illustration"
           className="block w-[125%] sm:w-[105%] md:w-[78%] lg:w-[72%] max-w-none md:max-w-[1250px] h-auto object-contain object-bottom -ml-4 sm:-ml-6 lg:-ml-8 opacity-95 translate-y-4"
-          loading="eager"
+          loading="lazy"
+          decoding="async"
         />
       </div>
 
