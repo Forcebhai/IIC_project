@@ -11,8 +11,10 @@ import { sponsorsData, sponsorsHeading } from './data';
  * 1. Technical architectural drafting grid + Victoria Memorial pencil engraving in upper right
  * 2. Centered heading: "Our Esteemed Sponsors" with "Sponsors" in Summit Yellow
  * 3. Left handwritten editorial annotation: "Powered by Industry Leaders" with curved SVG arrow
- * 4. 5 Columns × 3 Rows clean grid displaying exactly 15 confirmed brand sponsors
+ * 4. 5 Columns clean grid displaying all confirmed brand sponsors
  * 5. Interactive sponsor cards:
+ *    - Always visible with solid white background, subtle border, and shadow
+ *    - High-visibility logos with eager loading and robust URI encoding
  *    - On hover: reveals floating Instagram handle pill with Instagram icon & yellow border
  *    - On click: safely navigates directly to the sponsor's Instagram profile in a new tab
  * 6. Bottom CTA: "OUR PARTNERS →" with signature dashed yellow outline
@@ -25,11 +27,9 @@ export default function SponsorsSection() {
   const headingRef = useRef(null);
   const descRef = useRef(null);
   const leftAnnotationRef = useRef(null);
-  const gridRef = useRef(null);
-  const ctaRef = useRef(null);
   const rightAnnotationRef = useRef(null);
 
-  // GSAP ScrollTrigger entrance animation
+  // GSAP ScrollTrigger entrance animation for header & decorative accents
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -43,12 +43,12 @@ export default function SponsorsSection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 75%',
+          start: 'top 85%',
           toggleActions: 'play none none none',
         },
       });
 
-      // Staggered reveal
+      // Staggered reveal for header and annotations only (keeps cards 100% visible always)
       tl.from(eyebrowRef.current, {
         y: 20,
         opacity: 0,
@@ -86,27 +86,6 @@ export default function SponsorsSection() {
           '-=0.3'
         )
         .from(
-          gridRef.current ? gridRef.current.children : [],
-          {
-            y: 25,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.04,
-            ease: 'power2.out',
-          },
-          '-=0.3'
-        )
-        .from(
-          ctaRef.current,
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.5,
-            ease: 'power2.out',
-          },
-          '-=0.2'
-        )
-        .from(
           rightAnnotationRef.current,
           {
             opacity: 0,
@@ -118,7 +97,15 @@ export default function SponsorsSection() {
         );
     }, sectionRef);
 
-    return () => ctx.revert();
+    // Refresh ScrollTrigger after layout stabilizes
+    const timeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+
+    return () => {
+      clearTimeout(timeout);
+      ctx.revert();
+    };
   }, []);
 
   const handleCtaClick = () => {
@@ -270,11 +257,8 @@ export default function SponsorsSection() {
             </div>
           </div>
 
-          {/* ================= 5 COLUMNS × 3 ROWS CLEAN GRID (15 SPONSORS) ================= */}
-          <div
-            ref={gridRef}
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 md:gap-5 w-full"
-          >
+          {/* ================= CLEAN RESPONSIVE SPONSOR GRID ================= */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 sm:gap-4 md:gap-5 w-full">
             {sponsorsData.map((sponsor) => (
               <a
                 key={sponsor.id}
@@ -282,31 +266,31 @@ export default function SponsorsSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title={`Visit ${sponsor.name} on Instagram (${sponsor.instagramHandle})`}
-                className="group relative p-4 sm:p-5 md:p-6 rounded-[18px] sm:rounded-[20px] md:rounded-[22px] bg-white border border-[#DADADA] shadow-[0_4px_18px_rgba(0,0,0,0.03)] hover:border-[#F4C430] hover:shadow-[0_14px_32px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center justify-center min-h-[120px] sm:min-h-[140px] md:min-h-[155px] cursor-pointer overflow-hidden"
+                className="group relative p-4 sm:p-5 rounded-[18px] sm:rounded-[20px] md:rounded-[22px] bg-white border border-[#DADADA] shadow-[0_4px_18px_rgba(0,0,0,0.04)] hover:border-[#F4C430] hover:shadow-[0_16px_36px_rgba(0,0,0,0.09)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center justify-between min-h-[140px] sm:min-h-[155px] md:min-h-[165px] cursor-pointer overflow-hidden"
               >
-                {/* Subtle top accent bar on hover */}
+                {/* Top yellow accent indicator bar on hover */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-transparent group-hover:bg-[#F4C430] transition-colors duration-300" />
 
-                {/* Centered Sponsor Logo */}
-                <div className="w-full h-16 sm:h-20 flex items-center justify-center p-1">
+                {/* Centered Sponsor Logo Container */}
+                <div className="w-full flex-1 flex items-center justify-center p-2 min-h-[75px] sm:min-h-[85px]">
                   <img
-                    src={sponsor.logo}
+                    src={encodeURI(sponsor.logo)}
                     alt={`${sponsor.name} Logo`}
-                    loading="lazy"
-                    className="max-h-14 sm:max-h-16 max-w-[82%] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    loading="eager"
+                    className="max-h-16 sm:max-h-20 max-w-[85%] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
 
                 {/* Brand Name (visible always) */}
-                <span className="font-display font-bold text-xs sm:text-[13px] text-[#111111] group-hover:text-[#F4C430] transition-colors mt-2 text-center line-clamp-1">
+                <span className="font-display font-bold text-xs sm:text-[13px] text-[#111111] group-hover:text-[#F4C430] transition-colors mt-2 text-center line-clamp-1 w-full px-1">
                   {sponsor.name}
                 </span>
 
                 {/* Floating Instagram Handle Pill (Reveals on Hover) */}
-                <div className="absolute inset-x-0 bottom-2 sm:bottom-2.5 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 pointer-events-none">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-[#DADADA] shadow-md text-[10px] sm:text-[11px] font-mono font-bold text-[#111111]">
+                <div className="absolute inset-x-0 bottom-2.5 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0 pointer-events-none z-10">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-[#F4C430] shadow-md text-[10px] sm:text-[11px] font-mono font-bold text-[#111111]">
                     <Instagram className="w-3 h-3 text-[#E1306C]" />
-                    <span className="truncate max-w-[110px]">{sponsor.instagramHandle}</span>
+                    <span className="truncate max-w-[120px]">{sponsor.instagramHandle}</span>
                   </span>
                 </div>
               </a>
@@ -317,7 +301,7 @@ export default function SponsorsSection() {
         {/* ================= BOTTOM CTA AREA WITH RIGHT ANNOTATION ================= */}
         <div className="relative flex items-center justify-center mt-2">
           {/* Centred CTA Button with Outer Dashed Yellow Outline */}
-          <div ref={ctaRef} className="inline-block p-1.5 rounded-full border border-dashed border-[#F4C430] shadow-sm bg-white/50 backdrop-blur-sm">
+          <div className="inline-block p-1.5 rounded-full border border-dashed border-[#F4C430] shadow-sm bg-white/50 backdrop-blur-sm">
             <button
               type="button"
               onClick={handleCtaClick}
