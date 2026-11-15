@@ -19,13 +19,12 @@ export default function MobileNav({
 
         {/* Header inside drawer */}
         <div className="flex items-center justify-between pb-4 border-b border-white/15">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <img
               src="/assets/logos/Elevate360_logo.png"
               alt="Elevate 360 Official Logo"
-              className="w-7 h-7 object-contain"
+              className="h-7 w-auto max-w-[140px] object-contain"
             />
-            <span className="font-display font-bold text-base tracking-tight text-white">Elevate 360</span>
             <span className="text-[11px] text-white/70 font-mono">Kolkata 2026</span>
           </div>
 

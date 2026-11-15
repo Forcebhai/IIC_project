@@ -53,24 +53,21 @@ export default function Navbar() {
     <>
       <header className="fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 sm:px-8 lg:px-12 pt-3.5 sm:pt-6 pointer-events-none">
 
-        {/* Left: Minimal Clean Brand Logo & Wordmark */}
+        {/* Left: Clean Brand Logo Capsule */}
         <a
           href="#hero"
           onClick={(e) => {
             e.preventDefault();
             handleNavigate('#hero', 'hero');
           }}
-          className="pointer-events-auto flex items-center gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-black/30 backdrop-blur-2xl border border-white/20 shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-[#F4C430]/70 hover:bg-black/45 transition-all duration-300 group cursor-pointer"
+          className="pointer-events-auto flex items-center px-3  cursor-pointer"
         >
           <img
             src="/assets/logos/Elevate360_logo.png"
             alt="Elevate 360 Official Logo"
-            className="w-6 h-6 sm:w-7 sm:h-7 object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-6 sm:h-7.5 md:h-8.5 w-auto max-w-[130px] sm:max-w-[165px] md:max-w-[195px] object-contain transition-transform duration-300 group-hover:scale-105"
             loading="eager"
           />
-          <span className="font-display font-extrabold text-sm sm:text-base tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] group-hover:text-[#F4C430] transition-colors pr-1">
-            Elevate 360
-          </span>
         </a>
 
         {/* Center: Pure Glassmorphic Pill Capsule (Slightly larger, rich contrast) */}
