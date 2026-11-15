@@ -64,18 +64,13 @@ export default function SnuLogoMarquee() {
       aria-label="Sister Nivedita University Institutional Partners Marquee"
     >
       {/* ================= ARCHITECTURAL TOP HEADER STRIP ================= */}
-      <div className="w-full bg-[#FFFFFF] py-2.5 px-4 border-b border-[#DADADA] flex items-center justify-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-[#F4C430] animate-pulse" />
-        <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#111111] text-center">
-          ORGANIZED & HOSTED BY SISTER NIVEDITA UNIVERSITY · SNU-IIC · SNU-IQAC
-        </span>
-      </div>
+
 
       {/* ================= RIBBON 1: OFFICIAL LOGOS SCROLLING LEFT ================= */}
       <div className="relative w-full overflow-hidden bg-[#FFFFFF] py-3.5 sm:py-4 md:py-5 border-b border-[#DADADA]">
         <div
           className="flex w-max animate-marquee-left hover:[animation-play-state:paused]"
-          style={{ animationDuration: '48s' }}
+          style={{ animationDuration: '60s' }}
         >
           {/* Track Segment A */}
           <div className="flex items-center shrink-0">
@@ -148,7 +143,7 @@ export default function SnuLogoMarquee() {
       <div className="relative w-full overflow-hidden bg-[#FFE500] py-2 sm:py-2.5 md:py-3 border-t border-black/10">
         <div
           className="flex w-max animate-marquee-right hover:[animation-play-state:paused]"
-          style={{ animationDuration: '40s' }}
+          style={{ animationDuration: '60s' }}
         >
           {/* Track Segment A */}
           <div className="flex items-center shrink-0">
