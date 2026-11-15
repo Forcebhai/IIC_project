@@ -52,20 +52,23 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed top-0 inset-x-0 z-40 flex items-center justify-between px-4 sm:px-8 lg:px-12 pt-3.5 sm:pt-6 pointer-events-none">
-        
-        {/* Left: Minimal Clean Brand */}
+
+        {/* Left: Minimal Clean Brand Logo & Wordmark */}
         <a
           href="#hero"
           onClick={(e) => {
             e.preventDefault();
             handleNavigate('#hero', 'hero');
           }}
-          className="pointer-events-auto flex items-center gap-2.5 group cursor-pointer"
+          className="pointer-events-auto flex items-center gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-black/30 backdrop-blur-2xl border border-white/20 shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:border-[#F4C430]/70 hover:bg-black/45 transition-all duration-300 group cursor-pointer"
         >
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/35 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
-          </div>
-          <span className="font-sans font-bold text-sm sm:text-base tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+          <img
+            src="/assets/logos/Elevate360_logo.png"
+            alt="Elevate 360 Official Logo"
+            className="w-6 h-6 sm:w-7 sm:h-7 object-contain transition-transform duration-300 group-hover:scale-105"
+            loading="eager"
+          />
+          <span className="font-display font-extrabold text-sm sm:text-base tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] group-hover:text-[#F4C430] transition-colors pr-1">
             Elevate 360
           </span>
         </a>
