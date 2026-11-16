@@ -355,20 +355,19 @@ export default function Footer() {
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left Architectural Annotation Box */}
             <div className="md:col-span-5 space-y-3 sm:space-y-3.5 text-left">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#F7F7F4] border border-[#DADADA] font-sans text-xs sm:text-sm text-[#62666B] hover:text-[#111111] transition-colors duration-200 cursor-pointer">
-                <span>ARCH-REF // 22°32&apos;N 88°20&apos;E</span>
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#F7F7F4] border border-[#DADADA] font-sans text-[10px] font-bold tracking-wider sm:text-sm text-[#62666B] hover:text-[#111111] transition-colors duration-200 cursor-pointer">
+                <span>THE VENUE · SISTER NIVEDITA UNIVERSITY</span>
               </div>
               <h4 className="font-display font-bold text-xl sm:text-2xl text-[#111111] tracking-tight">
-                Kolkata: The Cradle of Innovation & Intellect
+                Where Ideas Take the Stage
               </h4>
               <p className="font-sans text-xs sm:text-sm text-[#62666B] leading-relaxed">
-                From historic marble monuments to East India&apos;s emerging AI startup frontier,
-                ELEVATE 360 script the next chapter of Indian technological leadership.
+                Home to ELEVATE 360, the SNU Auditorium becomes a meeting ground for innovators, entrepreneurs, researchers, and industry leaders. Designed for meaningful conversations and groundbreaking ideas, this is where Bengal's AI future takes centre stage.
               </p>
-              <div className="flex items-center gap-4 pt-2 text-[11px] font-mono text-[#62666B]">
-                <span>SCALE: 1:500</span>
+              <div className="flex items-center gap-4 pt-2 text-[11px] font-sans font-bold text-[#62666B]">
+                <span>LOCATION: SNU AUDITORIUM</span>
                 <span>•</span>
-                <span>VICTORIA MEMORIAL ARCHIVE</span>
+                <span>SISTER NIVEDITA UNIVERSITY, KOLKATA</span>
               </div>
             </div>
 

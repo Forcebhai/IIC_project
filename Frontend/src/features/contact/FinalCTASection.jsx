@@ -65,7 +65,7 @@ export default function FinalCTASection() {
       id: 'faq-04',
       question: 'How does the Start-up Pitch Competition work?',
       answer:
-        'The flagship Bengal AI Start-up Pitch Deck features a Semi-Final round for the Top 15 shortlisted teams on 18 November, culminating in the Grand Finale for the Top 5 finalists on 19 November in the B Block Auditorium before leading venture capitalists, angel syndicates, and NITI Aayog leadership.',
+        'The flagship Bengal AI Start-up Pitch Deck features a Semi-Final round for the Top 10 shortlisted teams on 18 November, culminating in the Grand Finale for the Top 5 finalists on 19 November in the B Block Auditorium before leading venture capitalists, angel syndicates, and NITI Aayog leadership.',
     },
     {
       id: 'faq-05',
@@ -366,41 +366,37 @@ export default function FinalCTASection() {
                     <div
                       key={item.id}
                       onClick={() => handleToggleFaq(idx)}
-                      className={`group rounded-2xl border transition-all duration-300 cursor-pointer overflow-hidden ${
-                        isOpen
-                          ? 'bg-[#F7F7F4] border-[#F4C430] shadow-[0_8px_24px_rgba(0,0,0,0.06)]'
-                          : 'bg-white border-[#DADADA] hover:border-[#F4C430]/70 shadow-sm'
-                      }`}
+                      className={`group rounded-2xl border transition-all duration-300 cursor-pointer overflow-hidden ${isOpen
+                        ? 'bg-[#F7F7F4] border-[#F4C430] shadow-[0_8px_24px_rgba(0,0,0,0.06)]'
+                        : 'bg-white border-[#DADADA] hover:border-[#F4C430]/70 shadow-sm'
+                        }`}
                     >
                       {/* Question Header */}
                       <div className="flex items-center justify-between p-4 sm:p-5 gap-3">
                         <div className="flex items-center gap-3 text-left">
                           <span
-                            className={`w-6 h-6 rounded-full flex items-center justify-center font-mono text-[11px] font-bold shrink-0 transition-colors ${
-                              isOpen
-                                ? 'bg-[#F4C430] text-[#111111]'
-                                : 'bg-[#F7F7F4] text-[#62666B] group-hover:bg-[#F4C430]/20'
-                            }`}
+                            className={`w-6 h-6 rounded-full flex items-center justify-center font-mono text-[11px] font-bold shrink-0 transition-colors ${isOpen
+                              ? 'bg-[#F4C430] text-[#111111]'
+                              : 'bg-[#F7F7F4] text-[#62666B] group-hover:bg-[#F4C430]/20'
+                              }`}
                           >
                             0{idx + 1}
                           </span>
                           <span
-                            className={`font-display font-bold text-sm sm:text-[15px] leading-snug transition-colors ${
-                              isOpen
-                                ? 'text-[#111111]'
-                                : 'text-[#222222] group-hover:text-[#111111]'
-                            }`}
+                            className={`font-display font-bold text-sm sm:text-[15px] leading-snug transition-colors ${isOpen
+                              ? 'text-[#111111]'
+                              : 'text-[#222222] group-hover:text-[#111111]'
+                              }`}
                           >
                             {item.question}
                           </span>
                         </div>
 
                         <div
-                          className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all ${
-                            isOpen
-                              ? 'bg-[#F4C430] text-[#111111] rotate-180'
-                              : 'bg-neutral-100 text-[#62666B] group-hover:bg-neutral-200'
-                          }`}
+                          className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all ${isOpen
+                            ? 'bg-[#F4C430] text-[#111111] rotate-180'
+                            : 'bg-neutral-100 text-[#62666B] group-hover:bg-neutral-200'
+                            }`}
                         >
                           <ChevronDown className="w-4 h-4 transition-transform duration-200" />
                         </div>
@@ -519,6 +515,34 @@ export default function FinalCTASection() {
                 >
                   <Mail className="w-3.5 h-3.5 text-[#F4C430] shrink-0" />
                   <span className="truncate">soumi06jash@gmail.com</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Coordinator 3: Debanjan Sen */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-[#DADADA] shadow-sm flex flex-col justify-between hover:border-[#F4C430] hover:shadow-md transition-all">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="font-display font-bold text-sm sm:text-base text-[#111111] tracking-tight">
+                  Debanjan Sen
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-[#F7F7F4] text-[9px] font-mono font-bold text-[#62666B] border border-[#DADADA]">
+                  HELPDESK
+                </span>
+              </div>
+              <div className="space-y-1.5 text-xs font-mono">
+                <a
+                  href="tel:+919933305603"
+                  className="flex items-center gap-2 text-[#444444] hover:text-[#111111] hover:font-bold transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#F4C430] shrink-0" />
+                  <span>+91 9382871821</span>
+                </a>
+                <a
+                  href="mailto:debanjan.007067@snuindia.in"
+                  className="flex items-center gap-2 text-[#444444] hover:text-[#111111] transition-colors truncate max-w-[210px]"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#F4C430] shrink-0" />
+                  <span className="truncate">debanjan.007067@snuindia.in</span>
                 </a>
               </div>
             </div>
