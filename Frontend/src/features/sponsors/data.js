@@ -15,13 +15,38 @@ export const sponsorsHeading = {
   ctaTarget: '#venue',
 };
 
+export const registrationPartner = [
+  {
+    id: 1,
+    name: 'Cercle',
+    title: 'Vybe Cerkle',
+    logo: '/assets/sponsors/cerkle.png',
+    applicationLink: 'https://play.google.com/store/apps/details?id=com.vybecerkle.cerkle',
+    category: 'Official Registration Partner',
+    actionText: 'Get Pass on App',
+  },
+];
+
+export const digitalMediaPartner = [
+  {
+    id: 1,
+    name: 'Edugraph',
+    title: 'The Telegraph Edugraph',
+    logo: '/assets/sponsors/edugraph-logo.svg',
+    website: 'https://www.telegraphindia.com/edugraph',
+    category: 'Official Digital Media Partner',
+    actionText: 'Visit Media Portal',
+  },
+];
+
+
 export const sponsorsData = [
   {
     id: 1,
     name: 'Anivault',
     logo: '/assets/sponsors/Anivault.jpg',
     instagramHandle: '@anivault.official',
-    instagramUrl: 'https://instagram.com/anivault.official',
+    instagramUrl: 'https://www.instagram.com/anivault.in?stkn=MWhxMWtpeHhmbWdkcg==',
     category: 'Merchandise & Creative Partner',
   },
   {
@@ -29,7 +54,7 @@ export const sponsorsData = [
     name: 'Astitva',
     logo: '/assets/sponsors/Astitva.jpg',
     instagramHandle: '@astitva.creations',
-    instagramUrl: 'https://instagram.com/astitva.creations',
+    instagramUrl: 'https://www.instagram.com/astitvawellnesscare?xtok=NjJtcmN4Z29yczNm',
     category: 'Sustainable Lifestyle Partner',
   },
   {
@@ -37,7 +62,7 @@ export const sponsorsData = [
     name: 'Ayushkriti',
     logo: '/assets/sponsors/ayushkriti.jpg',
     instagramHandle: '@ayushkriti',
-    instagramUrl: 'https://instagram.com/ayushkriti',
+    instagramUrl: 'https://www.instagram.com/ayushkriti2026?stkn=YXA4czZmeGQ3MzN1',
     category: 'Handcrafted Art Partner',
   },
   {
@@ -53,7 +78,7 @@ export const sponsorsData = [
     name: 'Bong Kits',
     logo: '/assets/sponsors/Bong Kits.jpg',
     instagramHandle: '@bongkits',
-    instagramUrl: 'https://instagram.com/bongkits',
+    instagramUrl: 'https://www.instagram.com/bong_kits.99?stkn=MTZjb3owbmhidzd2ZQ==',
     category: 'Bengal Cultural Merch Partner',
   },
   {
@@ -61,7 +86,7 @@ export const sponsorsData = [
     name: 'Chatpata Pantry',
     logo: '/assets/sponsors/Chatpata Pantry.jpg',
     instagramHandle: '@chatpatapantry',
-    instagramUrl: 'https://instagram.com/chatpatapantry',
+    instagramUrl: '',
     category: 'Gourmet Snack Partner',
   },
   {
@@ -69,7 +94,7 @@ export const sponsorsData = [
     name: 'Crochet Orchard',
     logo: '/assets/sponsors/Crochet Orchard.jpg',
     instagramHandle: '@crochet.orchard',
-    instagramUrl: 'https://instagram.com/crochet.orchard',
+    instagramUrl: 'https://www.instagram.com/crochet_orchard?rpxt=MThxdXRrN2d0bG5kcQ==',
     category: 'Artisan Crochet Partner',
   },
   {
@@ -85,7 +110,7 @@ export const sponsorsData = [
     name: 'Journal Haven',
     logo: '/assets/sponsors/Journal Haven.jpg',
     instagramHandle: '@journalhaven',
-    instagramUrl: 'https://instagram.com/journalhaven',
+    instagramUrl: 'https://www.instagram.com/thejournalhaven.co?stkn=MWY1aTBocjZ6MnZydA==',
     category: 'Stationery & Journaling Partner',
   },
   {
@@ -93,7 +118,7 @@ export const sponsorsData = [
     name: 'Little Clay Corner',
     logo: '/assets/sponsors/little clay corner.jpg',
     instagramHandle: '@littleclaycorner',
-    instagramUrl: 'https://instagram.com/littleclaycorner',
+    instagramUrl: 'https://www.instagram.com/littleclaycorner_05/',
     category: 'Ceramic & Pottery Partner',
   },
   {
@@ -101,7 +126,7 @@ export const sponsorsData = [
     name: 'Protein Matters',
     logo: '/assets/sponsors/Protein Matters.jpg',
     instagramHandle: '@proteinmatters.in',
-    instagramUrl: 'https://instagram.com/proteinmatters.in',
+    instagramUrl: 'https://www.instagram.com/protein_mattersofficial?cplk=MThoeDJ0aWYzN240Mg==',
     category: 'Health & Nutrition Partner',
   },
   {
@@ -109,7 +134,7 @@ export const sponsorsData = [
     name: 'Purvi Plucks',
     logo: '/assets/sponsors/Purvi Plucks.jpg',
     instagramHandle: '@purviplucks',
-    instagramUrl: 'https://instagram.com/purviplucks',
+    instagramUrl: 'https://www.instagram.com/purvi_plucks?stkn=MWJhaGtocWFpanBmaw==',
     category: 'Botanical Floral Partner',
   },
   {
@@ -117,7 +142,7 @@ export const sponsorsData = [
     name: 'Resolve Trash2Cash',
     logo: '/assets/sponsors/Resolve Trash2Cash.png',
     instagramHandle: '@resolvetrash2cash',
-    instagramUrl: 'https://instagram.com/resolvetrash2cash',
+    instagramUrl: 'https://www.instagram.com/positivestyle_rt2c?srtk=OGlsYXkyZzh6Mmhs',
     category: 'CleanTech & Circular Economy Partner',
   },
   {
@@ -125,7 +150,7 @@ export const sponsorsData = [
     name: 'Sadhana',
     logo: '/assets/sponsors/Sadhana.jpg',
     instagramHandle: '@sadhana.official',
-    instagramUrl: 'https://instagram.com/sadhana.official',
+    instagramUrl: 'https://www.instagram.com/sadhana.co_?stkn=Mnc3anFpeHR1azFz',
     category: 'Wellness & Lifestyle Partner',
   },
   {
@@ -133,7 +158,7 @@ export const sponsorsData = [
     name: 'Shivoham',
     logo: '/assets/sponsors/Shivoham.jpg',
     instagramHandle: '@shivoham_creations',
-    instagramUrl: 'https://instagram.com/shivoham_creations',
+    instagramUrl: '',
     category: 'Spiritual Arts & Wellness Partner',
   },
   {
@@ -141,7 +166,7 @@ export const sponsorsData = [
     name: 'Sundae, The Garage Café',
     logo: '/assets/sponsors/Sundae, The Garage Café.jpg',
     instagramHandle: '@sundaethegaragecafe',
-    instagramUrl: 'https://instagram.com/sundaethegaragecafe',
+    instagramUrl: 'https://www.instagram.com/sundae_by_diyasha/',
     category: 'Youth Café & Hangout Partner',
   },
   {
@@ -149,7 +174,7 @@ export const sponsorsData = [
     name: 'The Poured Candles',
     logo: '/assets/sponsors/the poured candles.jpg',
     instagramHandle: '@thepouredcandles',
-    instagramUrl: 'https://instagram.com/thepouredcandles',
+    instagramUrl: 'https://www.instagram.com/thepouredcandles/',
     category: 'Aromatherapy & Artisan Candles Partner',
   },
   {
@@ -157,7 +182,7 @@ export const sponsorsData = [
     name: 'You Are Awesome (YAA)',
     logo: '/assets/sponsors/You Are Awesome YAA.png',
     instagramHandle: '@youareawesome.yaa',
-    instagramUrl: 'https://instagram.com/youareawesome.yaa',
+    instagramUrl: 'https://www.instagram.com/you_are_awesome_store?stkn=MW5ncm9mZHlkcmx4dw==',
     category: 'Youth Empowerment & Community Partner',
   },
   {
@@ -165,8 +190,16 @@ export const sponsorsData = [
     name: 'Zenverse',
     logo: '/assets/sponsors/Zenverse.jpg',
     instagramHandle: '@zenverse.club',
-    instagramUrl: 'https://instagram.com/zenverse.club',
+    instagramUrl: 'https://www.instagram.com/ft.zenverse?stkn=MXJqcWdveTFoZmxpaA==',
     category: 'Youth Community & Web3 Partner',
+  },
+  {
+    id: 20,
+    name: 'Pretty Lil Things',
+    logo: '/assets/sponsors/Prettylilthings.png',
+    instagramHandle: '@prettylilthings',
+    instagramUrl: '',
+    category: 'Personalized & Gift Partner',
   },
 ];
 

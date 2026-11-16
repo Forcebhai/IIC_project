@@ -1,8 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowRight, Instagram, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Instagram, Sparkles } from 'lucide-react';
 import { gsap, ScrollTrigger } from '../../lib/gsap';
 import { scrollTo } from '../../lib/lenis';
-import { sponsorsData, sponsorsHeading } from './data';
+import {
+  sponsorsData,
+  sponsorsHeading,
+  registrationPartner,
+  digitalMediaPartner,
+} from './data';
 
 /**
  * SponsorsSection Component — Elevate 360: Bengal AI Start-up Summit 2026
@@ -26,6 +31,7 @@ export default function SponsorsSection() {
   const eyebrowRef = useRef(null);
   const headingRef = useRef(null);
   const descRef = useRef(null);
+  const featuredPartnersRef = useRef(null);
   const leftAnnotationRef = useRef(null);
   const rightAnnotationRef = useRef(null);
 
@@ -74,6 +80,16 @@ export default function SponsorsSection() {
             ease: 'power3.out',
           },
           '-=0.4'
+        )
+        .from(
+          featuredPartnersRef.current,
+          {
+            y: 25,
+            opacity: 0,
+            duration: 0.7,
+            ease: 'power3.out',
+          },
+          '-=0.3'
         )
         .from(
           leftAnnotationRef.current,
@@ -204,6 +220,183 @@ export default function SponsorsSection() {
           </p>
           {/* Summit Yellow line below description */}
           <div className="w-16 h-1 bg-[#F4C430] rounded-full mx-auto mt-4" />
+        </div>
+
+        {/* ================= TOP FEATURED PARTNERS (Registration & Digital Media) ================= */}
+        <div
+          ref={featuredPartnersRef}
+          className="relative w-full max-w-4xl mx-auto mb-14 sm:mb-18 px-3 sm:px-4"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 w-full">
+            {/* 1. Official Registration Partner */}
+            <div className="flex flex-col items-center md:items-start w-full">
+              {/* Handwritten Highlighting Annotation */}
+              <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+                <span
+                  className="font-caveat text-2xl sm:text-3xl font-bold text-[#153C30] leading-none -rotate-3 select-none"
+                  style={{ fontFamily: "'Caveat', cursive, serif" }}
+                >
+                  This is our Registration Partner
+                </span>
+                {/* Curved Arrow pointing down towards card */}
+                <svg
+                  width="40"
+                  height="30"
+                  viewBox="0 0 40 30"
+                  fill="none"
+                  className="text-[#153C30] shrink-0"
+                >
+                  <path
+                    d="M5 4 C 18 6, 28 14, 28 26"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M22 22 L 28 26 L 33 19"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span className="w-2 h-2 rounded-full bg-[#F4C430] shrink-0" />
+              </div>
+
+              {/* Registration Partner Card */}
+              {registrationPartner.map((partner) => (
+                <a
+                  key={partner.id}
+                  href={partner.applicationLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`Open ${partner.name} (${partner.category})`}
+                  className="group relative w-full p-5 sm:p-6 rounded-[22px] sm:rounded-[24px] bg-white border-2 border-[#DADADA] hover:border-[#F4C430] shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_16px_36px_rgba(244,196,48,0.2)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center justify-between min-h-[190px] sm:min-h-[210px] cursor-pointer overflow-hidden text-center"
+                >
+                  {/* Top Yellow Accent Bar */}
+                  <div className="absolute top-0 inset-x-0 h-1.5 bg-[#F4C430]" />
+
+                  {/* Eyebrow Pill Badge */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F7F7F4] border border-[#DADADA] group-hover:border-[#F4C430] transition-colors mb-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#F4C430] animate-pulse" />
+                    <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#111111]">
+                      {partner.category}
+                    </span>
+                  </div>
+
+                  {/* Centered Sponsor Logo Container */}
+                  <div className="w-full flex-1 flex items-center justify-center p-2 min-h-[85px] sm:min-h-[95px]">
+                    <img
+                      src={encodeURI(partner.logo)}
+                      alt={`${partner.name} Logo`}
+                      loading="eager"
+                      className="max-h-16 sm:max-h-20 max-w-[85%] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Card Bottom: Brand Name & Action Prompt */}
+                  <div className="w-full flex items-center justify-between pt-3 border-t border-neutral-100 mt-2">
+                    <span className="font-display font-black text-sm sm:text-base text-[#111111] group-hover:text-[#F4C430] transition-colors">
+                      {partner.name}
+                    </span>
+                    <span className="inline-flex items-center gap-1 font-mono text-[11px] text-[#62666B] group-hover:text-[#111111] transition-colors">
+                      <span>{partner.actionText || 'Download App'}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* 2. Official Digital Media Partner */}
+            <div className="flex flex-col items-center md:items-start w-full">
+              {/* Handwritten Highlighting Annotation */}
+              <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+                <span
+                  className="font-caveat text-2xl sm:text-3xl font-bold text-[#153C30] leading-none rotate-2 select-none"
+                  style={{ fontFamily: "'Caveat', cursive, serif" }}
+                >
+                  This is our Digital Media Partner
+                </span>
+                {/* Curved Arrow pointing down towards card */}
+                <svg
+                  width="40"
+                  height="30"
+                  viewBox="0 0 40 30"
+                  fill="none"
+                  className="text-[#153C30] shrink-0"
+                >
+                  <path
+                    d="M5 4 C 18 6, 28 14, 28 26"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M22 22 L 28 26 L 33 19"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span className="w-2 h-2 rounded-full bg-[#F4C430] shrink-0" />
+              </div>
+
+              {/* Digital Media Partner Card */}
+              {digitalMediaPartner.map((partner) => (
+                <a
+                  key={partner.id}
+                  href={partner.website || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`Visit ${partner.name} (${partner.category})`}
+                  className="group relative w-full p-5 sm:p-6 rounded-[22px] sm:rounded-[24px] bg-white border-2 border-[#DADADA] hover:border-[#F4C430] shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_16px_36px_rgba(244,196,48,0.2)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center justify-between min-h-[190px] sm:min-h-[210px] cursor-pointer overflow-hidden text-center"
+                >
+                  {/* Top Yellow Accent Bar */}
+                  <div className="absolute top-0 inset-x-0 h-1.5 bg-[#F4C430]" />
+
+                  {/* Eyebrow Pill Badge */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F7F7F4] border border-[#DADADA] group-hover:border-[#F4C430] transition-colors mb-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#F4C430] animate-pulse" />
+                    <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#111111]">
+                      {partner.category}
+                    </span>
+                  </div>
+
+                  {/* Centered Sponsor Logo Container */}
+                  <div className="w-full flex-1 flex items-center justify-center p-2 min-h-[85px] sm:min-h-[95px]">
+                    <img
+                      src={encodeURI(partner.logo)}
+                      alt={`${partner.name} Logo`}
+                      loading="eager"
+                      className="max-h-16 sm:max-h-20 max-w-[85%] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Card Bottom: Brand Name & Action Prompt */}
+                  <div className="w-full flex items-center justify-between pt-3 border-t border-neutral-100 mt-2">
+                    <span className="font-display font-black text-sm sm:text-base text-[#111111] group-hover:text-[#F4C430] transition-colors">
+                      {partner.name}
+                    </span>
+                    <span className="inline-flex items-center gap-1 font-mono text-[11px] text-[#62666B] group-hover:text-[#111111] transition-colors">
+                      <span>{partner.actionText || 'Visit Media'}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Subtle Architectural Divider Label for Brand Sponsors */}
+        <div className="w-full flex items-center justify-center gap-4 mb-10 sm:mb-12">
+          <div className="h-[1px] bg-[#DADADA] flex-1 max-w-[100px] sm:max-w-[180px]" />
+          <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#62666B]">
+            ALL SUMMIT SPONSORS & PARTNERS
+          </span>
+          <div className="h-[1px] bg-[#DADADA] flex-1 max-w-[100px] sm:max-w-[180px]" />
         </div>
 
         {/* ================= SPONSOR GRID AREA WITH ANNOTATIONS ================= */}
